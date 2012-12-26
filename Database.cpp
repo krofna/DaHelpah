@@ -45,7 +45,7 @@ void Database::PExecute(const char* sql, ...)
     char CQuery[MAX_QUERY_LEN];
 
     va_start(ArgList, sql);
-    secure_vsnprintf(CQuery, sizeof(CQuery), sql, ArgList);
+    vsnprintf(CQuery, sizeof(CQuery), sql, ArgList);
     va_end(ArgList);
 
     Execute(CQuery);
@@ -68,7 +68,7 @@ QueryResult Database::PQuery(const char* sql, ...)
     char CQuery[MAX_QUERY_LEN];
 
     va_start(ArgList, sql);
-    secure_vsnprintf(CQuery, MAX_QUERY_LEN, sql, ArgList);
+    vsnprintf(CQuery, MAX_QUERY_LEN, sql, ArgList);
     va_end(ArgList);
 
     return Query(CQuery);

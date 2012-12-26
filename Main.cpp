@@ -9,24 +9,25 @@
  * http://www.trinitycore.org/f/topic/7639-bin-truice-win32/
  * */
 
+#include <iostream>
+
 #include "Application.hpp"
 
 int main(int argc, char* argv[])
 {
     Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "DaHelpah");
 
-    Application* _app = new Application();
+    Application Window;
     int retval = 1;
     
     try
     {
-        retval = app->Run(_app);
+        retval = app->run(Window);
     }
     catch (std::runtime_error& e)
     {
         std::cout << "Runtime error lolz: " << e.what() << std::endl;
     }
     
-    delete _app;
     return retval;
 }

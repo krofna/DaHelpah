@@ -7,7 +7,7 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <gtkmm/window.h>
+#include <gtkmm.h>
 
 #include "ConditionsData.hpp"
 
@@ -20,10 +20,20 @@ class Application : public Gtk::Window
     protected:
     
     private:
-        void Save(bool ToFile);
-        
+        // DaHelpah stuff
+        void SaveToDB();
+        void SaveToFile();
+        void _Save(bool ToFile);
+        void Reset();
+        void Quit();
+
         bool SavedToDB;
         ConditionsData Condition;
+        
+        // GUI stuff
+        Gtk::Box Box;
+        Glib::RefPtr<Gtk::ActionGroup> RefActionGroup;
+        Glib::RefPtr<Gtk::UIManager> RefUIManager;
 };
 
 #endif
