@@ -29,15 +29,15 @@ class Application : public Gtk::Window
 
         bool SavedToDB;
         ConditionsData Condition;
-        
+
         // GUI stuff
         Gtk::Box Box;
         Glib::RefPtr<Gtk::ActionGroup> RefActionGroup;
         Glib::RefPtr<Gtk::UIManager> RefUIManager;
-        
+
         Gtk::ComboBoxText SourceTypeOrReferenceIdCombo;
         Gtk::ComboBoxText ConditionTypeOrReferenceCombo;
-        
+
         Gtk::Frame SourceFrame;
         Gtk::Frame ConditionFrame;
 
@@ -47,14 +47,16 @@ class Application : public Gtk::Window
         Gtk::Label ConditionValue1Label;
         Gtk::Label ConditionValue2Label;
         Gtk::Label ConditionValue3Label;
-        
+
         Gtk::Entry SourceGroupEntry;
         Gtk::Entry SourceEntryEntry; // Lol'd
-        Gtk::Entry ConditionTargetEntry;
         Gtk::Entry ConditionValue1Entry;
         Gtk::Entry ConditionValue2Entry;
         Gtk::Entry ConditionValue3Entry;
-        
+
+        Gtk::RadioButton ConditionTargetButton1;
+        Gtk::RadioButton ConditionTargetButton2;
+
         Gtk::CheckButton NegativeConditionButton;
         
         // Signal stuff

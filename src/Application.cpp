@@ -22,6 +22,8 @@ ConditionTargetLabel    ("Condition Target"),
 ConditionValue1Label    ("Condition Value 1"),
 ConditionValue2Label    ("Condition Value 2"),
 ConditionValue3Label    ("Condition Value 3"),
+ConditionTargetButton1  ("0:"),
+ConditionTargetButton2  ("1:"),
 SourceFrame             ("Source"),
 ConditionFrame          ("Conditions"),
 SourceTypeOrReferenceIdCombo(true),
@@ -48,6 +50,13 @@ ConditionTypeOrReferenceCombo(true)
     
     Box.pack_start(SourceGroupLabel);
     Box.pack_start(SourceGroupEntry);
+
+    // ConditionTarget
+    Gtk::RadioButton::Group Group = ConditionTargetButton1.get_group();
+    ConditionTargetButton2.set_group(Group);
+    
+    Box.pack_start(ConditionTargetButton1);
+    Box.pack_start(ConditionTargetButton2);
     
     add(Box);
     set_border_width(10);

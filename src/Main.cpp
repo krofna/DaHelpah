@@ -7,6 +7,7 @@
 /*
  * http://www.trinitycore.org/f/topic/180-bin-truice-win32/
  * http://www.trinitycore.org/f/topic/7639-bin-truice-win32/
+ * http://trac.edgewall.org/demo-0.12/query
  * */
 
 #include <iostream>
