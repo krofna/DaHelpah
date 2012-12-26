@@ -55,8 +55,17 @@ ConditionTypeOrReferenceCombo(true)
     Gtk::RadioButton::Group Group = ConditionTargetButton1.get_group();
     ConditionTargetButton2.set_group(Group);
     
+    Box.pack_start(ConditionTargetLabel);
     Box.pack_start(ConditionTargetButton1);
     Box.pack_start(ConditionTargetButton2);
+    
+    // Condition Value
+    Box.pack_start(ConditionValue1Label);
+    Box.pack_start(ConditionValue1Entry);
+    Box.pack_start(ConditionValue2Label);
+    Box.pack_start(ConditionValue2Entry);
+    Box.pack_start(ConditionValue3Label);
+    Box.pack_start(ConditionValue3Entry);
     
     add(Box);
     set_border_width(10);

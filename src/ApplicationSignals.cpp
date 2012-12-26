@@ -240,6 +240,24 @@ void Application::ConditionTypeOrReferenceComboChanged()
             ConditionValue3Label.set_text("Always 0!!");
             // TODO: Set 2/3 to 0!
             break;
+        case 24:
+            // TODO: goto case 0
+            break;
+        case 25:
+            ConditionValue1Label.set_text("Spell ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 26:
+            ConditionValue1Label.set_text("Phase Mask value");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 27:
+        case 28:
+        case 29:
         default:
             assert(false && "How the hell did you do this? Contact Krofna ASAP!");
             break;
