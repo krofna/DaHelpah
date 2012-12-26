@@ -32,16 +32,14 @@ Box                     (Gtk::ORIENTATION_VERTICAL)
     // File->
     RefActionGroup->add(Gtk::Action::create("FileNew", Gtk::Stock::NEW),
             sigc::mem_fun(*this, &Application::Reset));
-    RefActionGroup->add(Gtk::Action::create("FileSave", Gtk::Stock::SAVE));
+    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save Condition"));
     RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
             sigc::mem_fun(*this, &Application::Quit));
     
     // File->Save->
-    RefActionGroup->add(Gtk::Action::create("FileSaveDB",
-                        Gtk::Stock::SAVE, "To _DB", "Save to Database"),
+    RefActionGroup->add(Gtk::Action::create("FileSaveDB", "To _DB", "Save to Database"),
           sigc::mem_fun(*this, &Application::SaveToDB));
-    RefActionGroup->add(Gtk::Action::create("FileSaveFile",
-                        Gtk::Stock::SAVE, "To _File", "Save to File"),
+    RefActionGroup->add(Gtk::Action::create("FileSaveFile", "To _File", "Save to File"),
           sigc::mem_fun(*this, &Application::SaveToFile));
     
     RefUIManager = Gtk::UIManager::create();
