@@ -11,18 +11,27 @@
 
 #include "Application.hpp"
 #include "Database.hpp"
+#include "ConditionsString.hpp"
 
 Application::Application() :
 SavedToDB               (false),
-Box                     (Gtk::ORIENTATION_VERTICAL)
+Box                     (Gtk::ORIENTATION_VERTICAL),
+SourceTypeOrReferenceIdCombo(true)
 {
     WorldDatabase.Connect();
     Reset();
+    
+    for (uint8 i = 0; SourceTypeOrReferenceIdString[i]; ++i)
+        SourceTypeOrReferenceIdCombo.append(SourceTypeOrReferenceIdString[i]);
+    
+    SourceTypeOrReferenceIdCombo.set_active(0);
+    SourceTypeOrReferenceIdCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceTypeOrReferenceIdComboChanged));
 
+    Box.pack_start(SourceTypeOrReferenceIdCombo);
     add(Box);
     set_border_width(10);
     set_title("DaHelpah");
-    set_default_size(500, 500);
+    set_default_size(200, 100);
 
     RefActionGroup = Gtk::ActionGroup::create();
     
@@ -85,19 +94,26 @@ Application::~Application()
 
 void Application::SaveToDB()
 {
-    _Save(false);
+    _Save(0);
 }
 
 void Application::SaveToFile()
 {
-    _Save(true);
+    Gtk::FileChooserDialog Dialog("Dump da sql, mon.", Gtk::FILE_CHOOSER_ACTION_SAVE);
+    Dialog.set_transient_for(*this);
+
+    Dialog.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+    Dialog.add_button("Save", Gtk::RESPONSE_OK);
+
+    if (Dialog.run() == Gtk::RESPONSE_OK)
+        _Save(Dialog.get_filename().c_str());
 }
 
-void Application::_Save(bool ToFile)
+void Application::_Save(const char* FileName)
 {
     char Buffer[MAX_QUERY_LEN];
 
-    if (ToFile || !SavedToDB)
+    if (FileName || !SavedToDB)
     {
         snprintf(Buffer, MAX_QUERY_LEN, "INSERT INTO conditions VALUES (%i, %u, %i, %u, %u, %i, %u, %u, %u, %u, %u, %u, '%s', '%s')",
                  Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
@@ -117,9 +133,9 @@ void Application::_Save(bool ToFile)
                          Condition._NegativeCondition, Condition._ErrorTextId, Condition._ScriptName.c_str(), Condition._Comment.c_str());
     }
     
-    if (ToFile)
+    if (FileName)
     {
-        std::ofstream SqlDump("ConditionsData.sql");
+        std::ofstream SqlDump(FileName);
         SqlDump << Buffer;
     }
     else
@@ -138,3 +154,8 @@ void Application::Quit()
 {
     hide();
 }
+
+void Application::SourceTypeOrReferenceIdComboChanged()
+{
+    Condition._SourceTypeOrReferenceId = SourceTypeOrReferenceIdCombo.get_active_row_number();
+};

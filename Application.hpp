@@ -23,7 +23,7 @@ class Application : public Gtk::Window
         // DaHelpah stuff
         void SaveToDB();
         void SaveToFile();
-        void _Save(bool ToFile);
+        void _Save(const char* FileName);
         void Reset();
         void Quit();
 
@@ -34,6 +34,11 @@ class Application : public Gtk::Window
         Gtk::Box Box;
         Glib::RefPtr<Gtk::ActionGroup> RefActionGroup;
         Glib::RefPtr<Gtk::UIManager> RefUIManager;
+        
+        Gtk::ComboBoxText SourceTypeOrReferenceIdCombo;
+        
+        // Signal stuff
+        void SourceTypeOrReferenceIdComboChanged();
 };
 
 #endif

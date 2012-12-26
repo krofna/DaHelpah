@@ -34,7 +34,8 @@ const char* SourceTypeOrReferenceIdString[]
     "CONDITION_SOURCE_TYPE_QUEST_SHOW_MARK",
     "CONDITION_SOURCE_TYPE_VEHICLE_SPELL",
     "CONDITION_SOURCE_TYPE_SMART_EVENT",
-    "CONDITION_SOURCE_TYPE_MAX"
+    "CONDITION_SOURCE_TYPE_MAX",
+    NULL
 };
 
 const char* ConditionTypeOrReferenceString[]
@@ -78,7 +79,8 @@ const char* ConditionTypeOrReferenceString[]
     "CONDITION_ALIVE",
     "CONDITION_HP_VAL",
     "CONDITION_HP_PCT",
-    "CONDITION_MAX"
+    "CONDITION_MAX",
+    NULL
 };
 
 #endif
