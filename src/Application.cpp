@@ -16,22 +16,32 @@
 Application::Application() :
 SavedToDB               (false),
 Box                     (Gtk::ORIENTATION_VERTICAL),
-SourceTypeOrReferenceIdCombo(true)
+SourceTypeOrReferenceIdCombo(true),
+ConditionTypeOrReferenceCombo(true)
 {
     WorldDatabase.Connect();
     Reset();
     
+    // SourceTypeOrReferenceId
     for (uint8 i = 0; SourceTypeOrReferenceIdString[i]; ++i)
         SourceTypeOrReferenceIdCombo.append(SourceTypeOrReferenceIdString[i]);
-    
+
     SourceTypeOrReferenceIdCombo.set_active(0);
     SourceTypeOrReferenceIdCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceTypeOrReferenceIdComboChanged));
-
     Box.pack_start(SourceTypeOrReferenceIdCombo);
+    
+    // ConditionTypeOrReference
+    for (uint8 i = 0; ConditionTypeOrReferenceString[i]; ++i)
+        ConditionTypeOrReferenceCombo.append(ConditionTypeOrReferenceString[i]);
+    
+    ConditionTypeOrReferenceCombo.set_active(0);
+    ConditionTypeOrReferenceCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionTypeOrReferenceComboChanged));
+    Box.pack_start(ConditionTypeOrReferenceCombo);
+    
     add(Box);
     set_border_width(10);
     set_title("DaHelpah");
-    set_default_size(200, 100);
+    set_default_size(300, 100);
 
     RefActionGroup = Gtk::ActionGroup::create();
     
@@ -77,7 +87,7 @@ SourceTypeOrReferenceIdCombo(true)
     }
     catch(const Glib::Error& ex)
     {
-        std::cerr << "building menus failed: " <<  ex.what();
+        std::cerr << "Building menus failed: " <<  ex.what();
     }
 
     // Get the menubar widget, and add it to container
@@ -154,8 +164,3 @@ void Application::Quit()
 {
     hide();
 }
-
-void Application::SourceTypeOrReferenceIdComboChanged()
-{
-    Condition._SourceTypeOrReferenceId = SourceTypeOrReferenceIdCombo.get_active_row_number();
-};

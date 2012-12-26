@@ -36,9 +36,30 @@ class Application : public Gtk::Window
         Glib::RefPtr<Gtk::UIManager> RefUIManager;
         
         Gtk::ComboBoxText SourceTypeOrReferenceIdCombo;
+        Gtk::ComboBoxText ConditionTypeOrReferenceCombo;
+        
+        Gtk::Frame SourceFrame;
+        Gtk::Frame ConditionFrame;
+
+        Gtk::Label SourceGroupLabel;
+        Gtk::Label SourceEntryLabel;
+        Gtk::Label ConditionTargetLabel;
+        Gtk::Label ConditionValue1Label;
+        Gtk::Label ConditionValue2Label;
+        Gtk::Label ConditionValue3Label;
+        
+        Gtk::Entry SourceGroupEntry;
+        Gtk::Entry SourceEntryEntry; // Lol'd
+        Gtk::Entry ConditionTargetEntry;
+        Gtk::Entry ConditionValue1Entry;
+        Gtk::Entry ConditionValue2Entry;
+        Gtk::Entry ConditionValue3Entry;
+        
+        Gtk::CheckButton NegativeConditionButton;
         
         // Signal stuff
         void SourceTypeOrReferenceIdComboChanged();
+        void ConditionTypeOrReferenceComboChanged();
 };
 
 #endif
