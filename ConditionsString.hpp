@@ -6,6 +6,9 @@
 
 /* This is a generated file, do not edit */
 
+#ifndef CONDITIONS_STRING_HPP
+#define CONDITIONS_STRING_HPP
+
 const char* SourceTypeOrReferenceIdString[]
 {
     "CONDITION_SOURCE_TYPE_NONE",
@@ -77,3 +80,5 @@ const char* ConditionTypeOrReferenceString[]
     "CONDITION_HP_PCT",
     "CONDITION_MAX"
 };
+
+#endif

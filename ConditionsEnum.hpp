@@ -4,6 +4,9 @@
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 
+#ifndef CONDITIONS_ENUM_HPP
+#define CONDITIONS_ENUM_HPP
+
 enum SourceTypeOrReferenceId
 {
     CONDITION_SOURCE_TYPE_NONE                           = 0,
@@ -75,3 +78,5 @@ enum ConditionTypeOrReference
     CONDITION_HP_PCT                  = 38,
     CONDITION_MAX                     = 39
 };
+
+#endif
