@@ -3,8 +3,13 @@ DaHelpah
 Dafuq is dis sheet?
 I don't know yet lolz, but I'll figure out soon enough
 
+Which platformz do u support?
+Debian and Ubuntu
+
 Wut dafuq I need to compile dis sheet?
 g++
 libgtkmm-3.0-dev
+libmysqlcppconn-dev
 
 How dafuq I compile dis sheet?
+Lolz no guide yet
