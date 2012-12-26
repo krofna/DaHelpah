@@ -136,11 +136,11 @@ void Application::_Save(const char* FileName)
     if (FileName)
     {
         std::ofstream SqlDump(FileName);
-        SqlDump << Buffer;
+        SqlDump << Buffer << ';';
     }
     else
     {
-        WorldDatabase.Execute(&Buffer[0]);
+        WorldDatabase.Execute(Buffer);
         SavedToDB = true;
     }
 }
