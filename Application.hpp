@@ -9,15 +9,21 @@
 
 #include <gtkmm/window.h>
 
+#include "ConditionsData.hpp"
+
 class Application : public Gtk::Window
 {
     public:
         Application();
         virtual ~Application();
-        
-        void Load();
     
     protected:
+    
+    private:
+        void Save(bool ToFile);
+        
+        bool SavedToDB;
+        ConditionsData Condition;
 };
 
 #endif

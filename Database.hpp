@@ -31,10 +31,9 @@ class Database
         void Connect();
 
         QueryResult Query(const char* sql);
-        void Execute(const char* sql);
-
-        void PExecute(const char* sql, ...);
         QueryResult PQuery(const char* sql, ...);
+        void Execute(const char* sql);
+        void PExecute(const char* sql, ...);
 
     private:
         sql::Driver* Driver;

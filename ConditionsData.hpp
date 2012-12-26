@@ -11,7 +11,7 @@
 
 #include "BasicTypes.hpp"
 
-struct Conditions
+struct ConditionsData
 {
     int32 _SourceTypeOrReferenceId;
     uint32 _SourceGroup;

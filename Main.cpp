@@ -20,12 +20,11 @@ int main(int argc, char* argv[])
     
     try
     {
-        _app->Load();
         retval = app->Run(_app);
     }
     catch (std::runtime_error& e)
     {
-        std::cout << "Runtime error lolz: " << e.
+        std::cout << "Runtime error lolz: " << e.what() << std::endl;
     }
     
     delete _app;
