@@ -7,6 +7,7 @@
 #include <cassert>
 
 #include "Application.hpp"
+#include "ConditionsEnum.hpp"
 
 void Application::SourceTypeOrReferenceIdComboChanged()
 {
@@ -111,6 +112,133 @@ void Application::ConditionTypeOrReferenceComboChanged()
             // Reset
             break;
         case 1:
+            ConditionValue1Label.set_text("Spell ID");
+            ConditionValue2Label.set_text("Effect index (0-2)");
+            ConditionValue3Label.set_text("Always 0!!");
+            // ConditionValue3Entry TODO : set 0
+            break;
+        case 2:
+            ConditionValue1Label.set_text("Item entry");
+            ConditionValue2Label.set_text("Item count");
+            ConditionValue3Label.set_text("In bank (0/1)");
+            break;
+        case 3:
+            ConditionValue1Label.set_text("Item entry");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 4:
+            ConditionValue1Label.set_text("Zone ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 5:
+            ConditionValue1Label.set_text("Faction template ID");
+            ConditionValue2Label.set_text("Rank");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 3 to 0!
+            break;
+        case 6:
+            ConditionValue1Label.set_text("Team ID (A: 469/ H:67)");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 7:
+            ConditionValue1Label.set_text("Skill required");
+            ConditionValue2Label.set_text("Skill value");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 3 to 0!
+            break;
+        case 8:
+            ConditionValue1Label.set_text("Quest ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 9:
+            ConditionValue1Label.set_text("Quest ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 10:
+            ConditionValue1Label.set_text("Drunken state (0-3)");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 11:
+            ConditionValue1Label.set_text("World state index");
+            ConditionValue2Label.set_text("World state value");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 3 to 0!
+            break;
+        case 12:
+            ConditionValue1Label.set_text("Event entry");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 13:            
+            ConditionValue1Label.set_text("Entry");
+            ConditionValue2Label.set_text("Data");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 3 to 0!
+            break;
+        case 14:
+            ConditionValue1Label.set_text("Quest ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 15:
+            ConditionValue1Label.set_text("Class ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 16:
+            ConditionValue1Label.set_text("Race");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 17:
+            ConditionValue1Label.set_text("Achievement ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 18:
+            ConditionValue1Label.set_text("Title ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 19:
+            ConditionValue1Label.set_text("Spawn Mask");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 20:
+        case 21:
+            // TODO: goto case 0
+            break;
+        case 22:
+            ConditionValue1Label.set_text("Map entry");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
+            break;
+        case 23:
+            ConditionValue1Label.set_text("Area ID");
+            ConditionValue2Label.set_text("Always 0!!");
+            ConditionValue3Label.set_text("Always 0!!");
+            // TODO: Set 2/3 to 0!
             break;
         default:
             assert(false && "How the hell did you do this? Contact Krofna ASAP!");
