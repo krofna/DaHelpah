@@ -16,6 +16,14 @@
 Application::Application() :
 SavedToDB               (false),
 Box                     (Gtk::ORIENTATION_VERTICAL),
+SourceGroupLabel        ("Source Group"),
+SourceEntryLabel        ("Source Entry"),
+ConditionTargetLabel    ("Condition Target"),
+ConditionValue1Label    ("Condition Value 1"),
+ConditionValue2Label    ("Condition Value 2"),
+ConditionValue3Label    ("Condition Value 3"),
+SourceFrame             ("Source"),
+ConditionFrame          ("Conditions"),
 SourceTypeOrReferenceIdCombo(true),
 ConditionTypeOrReferenceCombo(true)
 {
@@ -37,6 +45,9 @@ ConditionTypeOrReferenceCombo(true)
     ConditionTypeOrReferenceCombo.set_active(0);
     ConditionTypeOrReferenceCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionTypeOrReferenceComboChanged));
     Box.pack_start(ConditionTypeOrReferenceCombo);
+    
+    Box.pack_start(SourceGroupLabel);
+    Box.pack_start(SourceGroupEntry);
     
     add(Box);
     set_border_width(10);

@@ -20,10 +20,8 @@ void Application::SourceTypeOrReferenceIdComboChanged()
     if (Condition._SourceTypeOrReferenceId < 13)
     {
         Condition._ConditionTarget = 0;
-        /* TODO:
-         * SourceGroup: loot entry (*_loot_template.Entry or Reference_loot_template.Entry)
-         * SourceEntry: item id (*_loot_template.Item or Reference_loot_template.Item) 
-         * */
+        SourceGroupLabel.set_text("Loot entry");
+        SourceEntryLabel.set_text("Item ID");
     }
     else
     {
