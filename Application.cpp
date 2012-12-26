@@ -15,3 +15,7 @@ Application::~Application()
 {
 }
 
+void Application::Load()
+{
+    WorldDatabase.Connect();
+}

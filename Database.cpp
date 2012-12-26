@@ -12,6 +12,8 @@
 
 #include "Database.hpp"
 
+Database WorldDatabase;
+
 Database::Database() : Driver(nullptr)
 {
 }

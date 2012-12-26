@@ -14,6 +14,8 @@ class Application : public Gtk::Window
     public:
         Application();
         virtual ~Application();
+        
+        void Load();
     
     protected:
 };

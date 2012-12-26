@@ -16,8 +16,18 @@ int main(int argc, char* argv[])
     Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "DaHelpah");
 
     Application* _app = new Application();
-    int retval = app->Run(_app);
+    int retval = 1;
+    
+    try
+    {
+        _app->Load();
+        retval = app->Run(_app);
+    }
+    catch (std::runtime_error& e)
+    {
+        std::cout << "Runtime error lolz: " << e.
+    }
+    
     delete _app;
-
     return retval;
 }
