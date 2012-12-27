@@ -315,7 +315,7 @@ void Application::ConditionTypeOrReferenceComboChanged()
             break;
         case CONDITION_ALIVE:
             SetConditionValueNull(3);
-            NegativeConditionButton.set_text("Dead?");
+            NegativeConditionButton.set_label("Dead?");
             break;
         case CONDITION_HP_VAL:
             ConditionValue1Label.set_text("Health");

@@ -4,13 +4,9 @@
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 
-#include <cstdio>
-#include <cstring>
 #include <iostream>
-#include <fstream>
 
 #include "Application.hpp"
-#include "Database.hpp"
 #include "ConditionsString.hpp"
 
 Application::Application() :
@@ -61,6 +57,10 @@ ConditionTypeOrReferenceCombo(true)
     Box.pack_start(ConditionTargetButton2);
 
     // Condition Value
+    ConditionValue1Entry.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionValue1Changed));
+    ConditionValue2Entry.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionValue2Changed));
+    ConditionValue3Entry.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionValue3Changed));
+
     Box.pack_start(ConditionValue1Label);
     Box.pack_start(ConditionValue1Entry);
     Box.pack_start(ConditionValue2Label);
@@ -69,6 +69,7 @@ ConditionTypeOrReferenceCombo(true)
     Box.pack_start(ConditionValue3Entry);
     
     // Negative condition
+    NegativeConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::NegativeConditionChanged));
     Box.pack_start(NegativeConditionButton);
 
     add(Box);
@@ -133,67 +134,4 @@ ConditionTypeOrReferenceCombo(true)
 
 Application::~Application()
 {
-}
-
-void Application::SaveToDB()
-{
-    _Save(0);
-}
-
-void Application::SaveToFile()
-{
-    Gtk::FileChooserDialog Dialog("Dump da sql, mon.", Gtk::FILE_CHOOSER_ACTION_SAVE);
-    Dialog.set_transient_for(*this);
-
-    Dialog.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
-    Dialog.add_button("Save", Gtk::RESPONSE_OK);
-
-    if (Dialog.run() == Gtk::RESPONSE_OK)
-        _Save(Dialog.get_filename().c_str());
-}
-
-void Application::_Save(const char* FileName)
-{
-    char Buffer[MAX_QUERY_LEN];
-
-    if (FileName || !SavedToDB)
-    {
-        snprintf(Buffer, MAX_QUERY_LEN, "INSERT INTO conditions VALUES (%i, %u, %i, %u, %u, %i, %u, %u, %u, %u, %u, %u, '%s', '%s')",
-                 Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
-                 Condition._SourceEntry, Condition._SourceId, Condition._ElseGroup, Condition._ConditionTypeOrReference,
-                 Condition._ConditionTarget, Condition._ConditionValue1, Condition._ConditionValue2, Condition._ConditionValue3,
-                 Condition._NegativeCondition, Condition._ErrorTextId, Condition._ScriptName.c_str(), Condition._Comment.c_str());
-    }
-    else
-    {
-        snprintf(Buffer, MAX_QUERY_LEN, "UPDATE conditions SET SourceTypeOrReferenceId=%i, SourceGroup=%u, "
-                 "SourceEntry=%i, SourceId=%u, ElseGroup=%u, ConditionTypeOrReference=%i, "
-                 "ConditionTarget=%u, ConditionValue1=%u, ConditionValue2=%u, ConditionValue3=%u, "
-                 "NegativeCondition=%u, ErrorTextId=%u, ScriptName='%s', Comment='%s'",
-                 Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
-                 Condition._SourceEntry, Condition._SourceId, Condition._ElseGroup, Condition._ConditionTypeOrReference,
-                 Condition._ConditionTarget, Condition._ConditionValue1, Condition._ConditionValue2, Condition._ConditionValue3,
-                 Condition._NegativeCondition, Condition._ErrorTextId, Condition._ScriptName.c_str(), Condition._Comment.c_str());
-    }
-
-    if (FileName)
-    {
-        std::ofstream SqlDump(FileName);
-        SqlDump << Buffer << ';';
-    }
-    else
-    {
-        WorldDatabase.Execute(Buffer);
-        SavedToDB = true;
-    }
-}
-
-void Application::Reset()
-{
-    std::memset(&Condition, 0, sizeof(ConditionsData) - 2 * sizeof(std::string));
-}
-
-void Application::Quit()
-{
-    hide();
 }

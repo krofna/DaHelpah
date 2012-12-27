@@ -10,6 +10,7 @@
 #include <gtkmm.h>
 
 #include "ConditionsData.hpp"
+#include "Database.hpp"
 
 class Application : public Gtk::Window
 {
@@ -29,11 +30,13 @@ class Application : public Gtk::Window
 
         bool SavedToDB;
         ConditionsData Condition;
+        Database WorldDatabase;
 
         // GUI stuff
-        Gtk::Box Box;
         Glib::RefPtr<Gtk::ActionGroup> RefActionGroup;
         Glib::RefPtr<Gtk::UIManager> RefUIManager;
+        
+        Gtk::Box Box;
 
         Gtk::ComboBoxText SourceTypeOrReferenceIdCombo;
         Gtk::ComboBoxText ConditionTypeOrReferenceCombo;
@@ -62,6 +65,10 @@ class Application : public Gtk::Window
         // Signal stuff
         void SourceTypeOrReferenceIdComboChanged();
         void ConditionTypeOrReferenceComboChanged();
+        void ConditionValue1Changed();
+        void ConditionValue2Changed();
+        void ConditionValue3Changed();
+        void NegativeConditionChanged();
 
         // Helper
         void SetConditionValueNull(uint8 Count);

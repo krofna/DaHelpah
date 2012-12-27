@@ -42,6 +42,4 @@ class Database
         PStatementPtr PStatement;
 };
 
-extern Database WorldDatabase;
-
 #endif
