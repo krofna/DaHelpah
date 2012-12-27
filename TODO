@@ -1,1 +1,1 @@
-- set_tooltip_text() with more info, remove them from labels
+There are some set_editable() bugs in ApplicationComboSignals.cpp
