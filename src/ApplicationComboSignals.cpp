@@ -12,6 +12,8 @@
 void Application::SourceTypeOrReferenceIdComboChanged()
 {
     Condition._SourceTypeOrReferenceId = SourceTypeOrReferenceIdCombo.get_active_row_number();
+    
+    SourceGroupEntry.set_editable(true);
 
     if (Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_NONE ||
         Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_MAX)
