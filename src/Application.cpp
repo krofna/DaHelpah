@@ -78,6 +78,8 @@ ConditionTypeOrReferenceCombo(true)
     
     // Source Id
     SourceIdEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceIdChanged));
+
+    Box.pack_start(SourceIdLabel);
     Box.pack_start(SourceIdEntry);
 
     // Window
