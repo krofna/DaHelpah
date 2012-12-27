@@ -297,7 +297,11 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(1);
             break;
         case CONDITION_TYPE_MASK:
-            ConditionValue1Label.set_text("TypeMask (TODO: tooltip)");
+            ConditionValue1Label.set_text("TypeMask");
+            ConditionValue1Entry.set_tooltip_text("0x0008: TYPEMASK_UNIT\n"
+                                                  "0x0010: TYPEMASK_PLAYER\n"
+                                                  "0x0020: TYPEMASK_GAMEOBJECT\n"
+                                                  "0x0080: TYPEMASK_CORPSE");
             SetConditionValueNull(2);
             break;
         case CONDITION_RELATION_TO:
@@ -310,10 +314,28 @@ void Application::ConditionTypeOrReferenceComboChanged()
         case CONDITION_DISTANCE_TO:
             break;
         case CONDITION_ALIVE:
+            SetConditionValueNull(3);
+            NegativeConditionButton.set_text("Dead?");
             break;
         case CONDITION_HP_VAL:
+            ConditionValue1Label.set_text("Health");
+            ConditionValue2Label.set_text("Condition");
+            ConditionValue2Entry.set_tooltip_text("0: ==\n"
+                                                  "1: >\n"
+                                                  "2: <\n"
+                                                  "3: >=\n"
+                                                  "4: <=");
+            SetConditionValueNull(1);
             break;
         case CONDITION_HP_PCT:
+            ConditionValue1Label.set_text("Percent of max HP");
+            ConditionValue2Label.set_text("Condition");
+            ConditionValue2Entry.set_tooltip_text("0: ==\n"
+                                                  "1: >\n"
+                                                  "2: <\n"
+                                                  "3: >=\n"
+                                                  "4: <=");
+            SetConditionValueNull(1);
             break;
         default:
             assert(false && "How the hell did you do this? Contact Krofna ASAP!");

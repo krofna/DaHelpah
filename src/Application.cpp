@@ -26,6 +26,7 @@ ConditionTargetButton1  ("0:"),
 ConditionTargetButton2  ("1:"),
 SourceFrame             ("Source"),
 ConditionFrame          ("Conditions"),
+NegativeConditionButton ("Invert condition?"),
 SourceTypeOrReferenceIdCombo(true),
 ConditionTypeOrReferenceCombo(true)
 {
@@ -66,6 +67,9 @@ ConditionTypeOrReferenceCombo(true)
     Box.pack_start(ConditionValue2Entry);
     Box.pack_start(ConditionValue3Label);
     Box.pack_start(ConditionValue3Entry);
+    
+    // Negative condition
+    Box.pack_start(NegativeConditionButton);
 
     add(Box);
     set_border_width(10);
