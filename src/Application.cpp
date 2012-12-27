@@ -43,7 +43,7 @@ ConditionTypeOrReferenceCombo(true)
     // ConditionTypeOrReference
     for (uint8 i = 0; ConditionTypeOrReferenceString[i]; ++i)
         ConditionTypeOrReferenceCombo.append(ConditionTypeOrReferenceString[i]);
-    
+
     ConditionTypeOrReferenceCombo.set_active(0);
     ConditionTypeOrReferenceCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionTypeOrReferenceComboChanged));
     Box.pack_start(ConditionTypeOrReferenceCombo);

@@ -30,65 +30,65 @@ void Application::SourceTypeOrReferenceIdComboChanged()
     {
         switch (Condition._SourceTypeOrReferenceId)
         {
-            case 13:
+            case CONDITION_SOURCE_TYPE_SPELL_IMPLICIT_TARGET:
                 SourceGroupLabel.set_text("Effect mask");
                 SourceEntryLabel.set_text("Spell ID");
                 ConditionTargetButton1.set_label("0: Spell Target");
                 ConditionTargetButton2.set_label("1: Spell Caster");
                 break;
-            case 14:
+            case CONDITION_SOURCE_TYPE_GOSSIP_MENU:
                 SourceGroupLabel.set_text("Gossip menu entry");
                 SourceEntryLabel.set_text("Gossip menu text ID");
                 ConditionTargetButton1.set_label("0: Player");
                 ConditionTargetButton2.set_label("1: WorldObject");
                 break;
-            case 15:
+            case CONDITION_SOURCE_TYPE_GOSSIP_MENU_OPTION:
                 SourceGroupLabel.set_text("Gossip menu entry");
                 SourceEntryLabel.set_text("Gossip menu option ID");
                 ConditionTargetButton1.set_label("0: Player");
                 ConditionTargetButton2.set_label("1: WorldObject");
                 break;
-            case 16:
+            case CONDITION_SOURCE_TYPE_CREATURE_TEMPLATE_VEHICLE:
                 SourceGroupLabel.set_text("Always 0!");
-                //SourceGroupEntry TODO: set to 0
+                SourceGroupEntry.set_text("0");
                 SourceEntryLabel.set_text("Creature entry");
                 ConditionTargetButton1.set_label("0: Player");
                 ConditionTargetButton2.set_label("1: Vehicle Creature");
                 break;
-            case 17:
+            case CONDITION_SOURCE_TYPE_SPELL:
                 SourceGroupLabel.set_text("Always 0!");
-                //SourceGroupEntry TODO: set to 0
+                SourceGroupEntry.set_text("0");
                 SourceEntryLabel.set_text("Spell ID");
                 ConditionTargetButton1.set_label("0: Spell Caster");
                 ConditionTargetButton2.set_label("1: Explicit Target");
                 break;
-            case 18:
+            case CONDITION_SOURCE_TYPE_SPELL_CLICK_EVENT:
                 SourceGroupLabel.set_text("Creature entry");
                 SourceEntryLabel.set_text("Spell ID");
                 ConditionTargetButton1.set_label("0: Clicker");
                 ConditionTargetButton2.set_label("1: Clickee");
                 break;
-            case 19:
+            case CONDITION_SOURCE_TYPE_QUEST_ACCEPT:
                 SourceEntryLabel.set_text("Quest ID");
                 ConditionTargetButton1.set_active(); // TODO: Condition._ConditionTarget = 0;
                 ConditionTargetButton1.set_label("0:");
                 ConditionTargetButton2.set_label("1:");
                 // SourceGroup: ? <--- 0?
                 break;
-            case 20:
+            case CONDITION_SOURCE_TYPE_QUEST_SHOW_MARK:
                 SourceEntryLabel.set_text("Quest ID");
                 ConditionTargetButton1.set_active(); // TODO: Condition._ConditionTarget = 0;
                 ConditionTargetButton1.set_label("0:");
                 ConditionTargetButton2.set_label("1:");
                 // SourceGroup: ? <--- 0?
                 break;
-            case 21:
+            case CONDITION_SOURCE_TYPE_VEHICLE_SPELL:
                 SourceGroupLabel.set_text("Creature entry");
                 SourceEntryLabel.set_text("Spell ID");
                 ConditionTargetButton1.set_label("0: Player");
                 ConditionTargetButton2.set_label("1: Vehicle Creature");
                 break;
-            case 22:
+            case CONDITION_SOURCE_TYPE_SMART_EVENT:
                 SourceGroupLabel.set_text("SmartScript ID");
                 SourceEntryLabel.set_text("SmartScript EntryOrGuid");
                 // TODO: SourceId: SourceType (smart_scripts.source_type)
@@ -100,7 +100,28 @@ void Application::SourceTypeOrReferenceIdComboChanged()
                 break;
         }
     }
-};
+}
+
+void Application::SetConditionTypeNull(uint8 Count)
+{
+    if (Count)
+    {
+        ConditionValue3Label.set_text("Always 0!");
+        ConditionValue3Entry.set_text("0");
+        --Count;
+    }
+    if (Count)
+    {
+        ConditionValue2Label.set_text("Always 0!");
+        ConditionValue2Entry.set_text("0");
+        --Count;
+    }
+    if (Count)
+    {
+        ConditionValue1Label.set_text("Always 0!");
+        ConditionValue1Entry.set_text("0");
+    }
+}
 
 void Application::ConditionTypeOrReferenceComboChanged()
 {
@@ -109,155 +130,138 @@ void Application::ConditionTypeOrReferenceComboChanged()
     switch (Condition._ConditionTypeOrReference)
     {
         case 0:
-            // Reset
+            // TODO: Reset?
             break;
-        case 1:
+        case CONDITION_AURA:
             ConditionValue1Label.set_text("Spell ID");
             ConditionValue2Label.set_text("Effect index (0-2)");
-            ConditionValue3Label.set_text("Always 0!!");
-            // ConditionValue3Entry TODO : set 0
+            SetConditionTypeNull(1);
             break;
-        case 2:
+        case CONDITION_ITEM:
             ConditionValue1Label.set_text("Item entry");
             ConditionValue2Label.set_text("Item count");
             ConditionValue3Label.set_text("In bank (0/1)");
             break;
-        case 3:
+        case CONDITION_ITEM_EQUIPPED:
             ConditionValue1Label.set_text("Item entry");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 4:
+        case CONDITION_ZONEID:
             ConditionValue1Label.set_text("Zone ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 5:
+        case CONDITION_REPUTATION_RANK:
             ConditionValue1Label.set_text("Faction template ID");
             ConditionValue2Label.set_text("Rank");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 3 to 0!
+            SetConditionTypeNull(1);
             break;
-        case 6:
+        case CONDITION_TEAM:
             ConditionValue1Label.set_text("Team ID (A: 469/ H:67)");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 7:
+        case CONDITION_SKILL:
             ConditionValue1Label.set_text("Skill required");
             ConditionValue2Label.set_text("Skill value");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 3 to 0!
+            SetConditionTypeNull(1);
             break;
-        case 8:
+        case CONDITION_QUESTREWARDED:
             ConditionValue1Label.set_text("Quest ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 9:
+        case CONDITION_QUESTTAKEN:
             ConditionValue1Label.set_text("Quest ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 10:
+        case CONDITION_DRUNKENSTATE:
             ConditionValue1Label.set_text("Drunken state (0-3)");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 11:
+        case CONDITION_WORLD_STATE:
             ConditionValue1Label.set_text("World state index");
             ConditionValue2Label.set_text("World state value");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 3 to 0!
+            SetConditionTypeNull(1);
             break;
-        case 12:
+        case CONDITION_ACTIVE_EVENT:
             ConditionValue1Label.set_text("Event entry");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 13:            
+        case CONDITION_INSTANCE_DATA:            
             ConditionValue1Label.set_text("Entry");
             ConditionValue2Label.set_text("Data");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 3 to 0!
+            SetConditionTypeNull(1);
             break;
-        case 14:
+        case CONDITION_QUEST_NONE:
             ConditionValue1Label.set_text("Quest ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 15:
+        case CONDITION_CLASS:
             ConditionValue1Label.set_text("Class ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 16:
+        case CONDITION_RACE:
             ConditionValue1Label.set_text("Race");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 17:
+        case CONDITION_ACHIEVEMENT:
             ConditionValue1Label.set_text("Achievement ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 18:
+        case CONDITION_TITLE:
             ConditionValue1Label.set_text("Title ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 19:
-            ConditionValue1Label.set_text("Spawn Mask");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+        case CONDITION_SPAWNMASK:
+            ConditionValue1Label.set_text("SpawnMask");
+            SetConditionTypeNull(2);
             break;
-        case 20:
-        case 21:
-            // TODO: goto case 0
+        case CONDITION_GENDER:
+            // TODO: Jump to 0?
             break;
-        case 22:
+        case CONDITION_UNUSED_21:
+            // TODO
+            break;
+        case CONDITION_MAPID:
             ConditionValue1Label.set_text("Map entry");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 23:
+        case CONDITION_AREAID:
             ConditionValue1Label.set_text("Area ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 24:
-            // TODO: goto case 0
+        case CONDITION_UNUSED_24:
+            // TODO
             break;
-        case 25:
+        case CONDITION_SPELL:
             ConditionValue1Label.set_text("Spell ID");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+            SetConditionTypeNull(2);
             break;
-        case 26:
-            ConditionValue1Label.set_text("Phase Mask value");
-            ConditionValue2Label.set_text("Always 0!!");
-            ConditionValue3Label.set_text("Always 0!!");
-            // TODO: Set 2/3 to 0!
+        case CONDITION_PHASEMASK:
+            ConditionValue1Label.set_text("PhaseMask value");
+            SetConditionTypeNull(2);
             break;
-        case 27:
-        case 28:
-        case 29:
+        case CONDITION_LEVEL:
+            ConditionValue1Label.set_text("Player level");
+            ConditionValue2Label.set_text("==,>,<,>=,<= (0-4)");
+            SetConditionTypeNull(1);
+            break;
+        case CONDITION_QUEST_COMPLETE:
+            ConditionValue1Label.set_text("Quest ID");
+            SetConditionTypeNull(2);
+            break;
+        case CONDITION_NEAR_CREATURE:
+            ConditionValue1Label.set_text("Creature entry");
+            ConditionValue2Label.set_text("Distance in yards");
+            SetConditionTypeNull(1);
+            break;
+        case CONDITION_NEAR_GAMEOBJECT:
+            ConditionValue1Label.set_text("Gameobject entry");
+            ConditionValue2Label.set_text("Distance in yards");
+            SetConditionTypeNull(1);
+            break;
+        case CONDITION_OBJECT_ENTRY:
+            break;
+        case CONDITION_TYPE_MASK:
+            break;
         default:
             assert(false && "How the hell did you do this? Contact Krofna ASAP!");
             break;

@@ -62,6 +62,9 @@ class Application : public Gtk::Window
         // Signal stuff
         void SourceTypeOrReferenceIdComboChanged();
         void ConditionTypeOrReferenceComboChanged();
+        
+        // Helper
+        void SetConditionTypeNull(uint8 Count);
 };
 
 #endif
