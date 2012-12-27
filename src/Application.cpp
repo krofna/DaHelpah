@@ -11,6 +11,7 @@
 
 Application::Application() :
 SavedToDB               (false),
+MainBox                 (Gtk::ORIENTATION_VERTICAL),
 Box                     (Gtk::ORIENTATION_HORIZONTAL),
 SourceBox               (Gtk::ORIENTATION_VERTICAL),
 ConditionBox            (Gtk::ORIENTATION_VERTICAL),
@@ -32,6 +33,7 @@ SourceFrame             ("Source"),
 ConditionFrame          ("Conditions"),
 MiscFrame               ("Misc"),
 NegativeConditionButton ("Invert condition?"),
+NewConditionButton      ("New Condition"),
 SourceTypeOrReferenceIdLabel("Source Type or Reference ID"),
 SourceTypeOrReferenceIdCombo(true),
 ConditionTypeOrReferenceCombo(true)
@@ -40,6 +42,9 @@ ConditionTypeOrReferenceCombo(true)
     ResetConditionData();
     
     // Frames
+    SourceFrame.set_border_width(5);
+    ConditionFrame.set_border_width(5);
+    MiscFrame.set_border_width(5);
     Box.pack_start(SourceFrame);
     Box.pack_start(ConditionFrame);
     Box.pack_start(MiscFrame);
@@ -128,12 +133,14 @@ ConditionTypeOrReferenceCombo(true)
     MiscBox.pack_start(CommentEntry);
 
     // Window
-    add(Box);
-    set_border_width(10);
+    MainBox.pack_start(Box);
+    add(MainBox);
+    set_border_width(5);
     set_title("DaHelpah");
-    set_default_size(300, 100);
-
     RefActionGroup = Gtk::ActionGroup::create();
+    
+    // New Condition
+    MainBox.pack_start(NewConditionButton);
 
     // File
     RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));

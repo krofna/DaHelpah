@@ -35,7 +35,8 @@ class Application : public Gtk::Window
         // GUI stuff
         Glib::RefPtr<Gtk::ActionGroup> RefActionGroup;
         Glib::RefPtr<Gtk::UIManager> RefUIManager;
-        
+
+        Gtk::Box MainBox;
         Gtk::Box Box;
         Gtk::Box SourceBox;
         Gtk::Box ConditionBox;
@@ -76,6 +77,8 @@ class Application : public Gtk::Window
         Gtk::RadioButton ConditionTargetButton2;
 
         Gtk::CheckButton NegativeConditionButton;
+        
+        Gtk::Button NewConditionButton;
 
         // Signal stuff
         void SourceTypeOrReferenceIdComboChanged();
