@@ -19,7 +19,7 @@ void Application::ConditionValue2Changed()
 
 void Application::ConditionValue3Changed()
 {
-    Condition._ConditionValue3 = ToInt<uint32>(ConditionValue3Entry.get_text().raw());
+    Condition._ConditionValue3 = ToInt<uint32>(ConditionValue3Entry.get_text());
 }
 
 void Application::NegativeConditionChanged()
@@ -40,4 +40,29 @@ void Application::ConditionTargetButton2Changed()
 void Application::SourceIdChanged()
 {
     Condition._SourceId = ToInt<uint32>(SourceIdEntry.get_text());
+}
+
+void Application::ErrorTextIdChanged()
+{
+    Condition._ErrorTextId = ToInt<uint32>(ErrorTextIdEntry.get_text());
+}
+
+void Application::ScriptNameChanged()
+{
+    Condition._ScriptName = ScriptNameEntry.get_text();
+}
+
+void Application::CommentChanged()
+{
+    Condition._Comment = CommentEntry.get_text();
+}
+
+void Application::SourceGroupChanged()
+{
+    Condition._SourceGroup = ToInt<uint32>(SourceGroupEntry.get_text());
+}
+
+void Application::ElseGroupChanged()
+{
+    Condition._ElseGroup = ToInt<uint32>(ElseGroupEntry.get_text());
 }

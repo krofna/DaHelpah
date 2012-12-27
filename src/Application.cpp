@@ -11,24 +11,41 @@
 
 Application::Application() :
 SavedToDB               (false),
-Box                     (Gtk::ORIENTATION_VERTICAL),
+Box                     (Gtk::ORIENTATION_HORIZONTAL),
+SourceBox               (Gtk::ORIENTATION_VERTICAL),
+ConditionBox            (Gtk::ORIENTATION_VERTICAL),
+MiscBox                 (Gtk::ORIENTATION_VERTICAL),
 SourceGroupLabel        ("Source Group"),
 SourceEntryLabel        ("Source Entry"),
 SourceIdLabel           ("Source ID"),
+ElseGroupLabel          ("Else Group"),
 ConditionTargetLabel    ("Condition Target"),
 ConditionValue1Label    ("Condition Value 1"),
 ConditionValue2Label    ("Condition Value 2"),
 ConditionValue3Label    ("Condition Value 3"),
+ErrorTextIdLabel        ("Error Text ID"),
+ScriptNameLabel         ("ScriptName"),
+CommentLabel            ("Comment"),
 ConditionTargetButton1  ("0:"),
 ConditionTargetButton2  ("1:"),
 SourceFrame             ("Source"),
 ConditionFrame          ("Conditions"),
+MiscFrame               ("Misc"),
 NegativeConditionButton ("Invert condition?"),
+SourceTypeOrReferenceIdLabel("Source Type or Reference ID"),
 SourceTypeOrReferenceIdCombo(true),
 ConditionTypeOrReferenceCombo(true)
 {
     WorldDatabase.Connect();
     ResetConditionData();
+    
+    // Frames
+    Box.pack_start(SourceFrame);
+    Box.pack_start(ConditionFrame);
+    Box.pack_start(MiscFrame);
+    SourceFrame.add(SourceBox);
+    ConditionFrame.add(ConditionBox);
+    MiscFrame.add(MiscBox);
 
     // SourceTypeOrReferenceId
     for (uint8 i = 0; SourceTypeOrReferenceIdString[i]; ++i)
@@ -36,7 +53,8 @@ ConditionTypeOrReferenceCombo(true)
 
     SourceTypeOrReferenceIdCombo.set_active(0);
     SourceTypeOrReferenceIdCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceTypeOrReferenceIdComboChanged));
-    Box.pack_start(SourceTypeOrReferenceIdCombo);
+    SourceBox.pack_start(SourceTypeOrReferenceIdLabel);
+    SourceBox.pack_start(SourceTypeOrReferenceIdCombo);
 
     // ConditionTypeOrReference
     for (uint8 i = 0; ConditionTypeOrReferenceString[i]; ++i)
@@ -44,43 +62,70 @@ ConditionTypeOrReferenceCombo(true)
 
     ConditionTypeOrReferenceCombo.set_active(0);
     ConditionTypeOrReferenceCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionTypeOrReferenceComboChanged));
-    Box.pack_start(ConditionTypeOrReferenceCombo);
+    ConditionBox.pack_start(ConditionTypeOrReferenceCombo);
 
-    Box.pack_start(SourceGroupLabel);
-    Box.pack_start(SourceGroupEntry);
+    // Source Group
+    SourceGroupEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceGroupChanged));
 
-    // ConditionTarget
+    SourceBox.pack_start(SourceGroupLabel);
+    SourceBox.pack_start(SourceGroupEntry);
+
+    // Condition Target
     ConditionTargetButton1.signal_clicked().connect(sigc::mem_fun(*this, &Application::ConditionTargetButton1Changed));
     ConditionTargetButton2.signal_clicked().connect(sigc::mem_fun(*this, &Application::ConditionTargetButton2Changed));
     
     Gtk::RadioButton::Group Group = ConditionTargetButton1.get_group();
     ConditionTargetButton2.set_group(Group);
 
-    Box.pack_start(ConditionTargetLabel);
-    Box.pack_start(ConditionTargetButton1);
-    Box.pack_start(ConditionTargetButton2);
+    ConditionBox.pack_start(ConditionTargetLabel);
+    ConditionBox.pack_start(ConditionTargetButton1);
+    ConditionBox.pack_start(ConditionTargetButton2);
 
     // Condition Value
     ConditionValue1Entry.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionValue1Changed));
     ConditionValue2Entry.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionValue2Changed));
     ConditionValue3Entry.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionValue3Changed));
 
-    Box.pack_start(ConditionValue1Label);
-    Box.pack_start(ConditionValue1Entry);
-    Box.pack_start(ConditionValue2Label);
-    Box.pack_start(ConditionValue2Entry);
-    Box.pack_start(ConditionValue3Label);
-    Box.pack_start(ConditionValue3Entry);
+    ConditionBox.pack_start(ConditionValue1Label);
+    ConditionBox.pack_start(ConditionValue1Entry);
+    ConditionBox.pack_start(ConditionValue2Label);
+    ConditionBox.pack_start(ConditionValue2Entry);
+    ConditionBox.pack_start(ConditionValue3Label);
+    ConditionBox.pack_start(ConditionValue3Entry);
     
     // Negative condition
     NegativeConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::NegativeConditionChanged));
-    Box.pack_start(NegativeConditionButton);
+    ConditionBox.pack_start(NegativeConditionButton);
     
     // Source Id
     SourceIdEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceIdChanged));
 
-    Box.pack_start(SourceIdLabel);
-    Box.pack_start(SourceIdEntry);
+    SourceBox.pack_start(SourceIdLabel);
+    SourceBox.pack_start(SourceIdEntry);
+    
+    // Else Group
+    ElseGroupEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::ElseGroupChanged));
+    
+    SourceBox.pack_start(ElseGroupLabel);
+    SourceBox.pack_start(ElseGroupEntry);
+    
+    // Error Text Id
+    ErrorTextIdEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::ErrorTextIdChanged));
+    
+    MiscBox.pack_start(ErrorTextIdLabel);
+    MiscBox.pack_start(ErrorTextIdEntry);
+    
+    // Script Name
+    ScriptNameEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::ScriptNameChanged));
+    
+    MiscBox.pack_start(ScriptNameLabel);
+    MiscBox.pack_start(ScriptNameEntry);
+    
+    // Comment
+    CommentEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::CommentChanged));
+    
+    MiscBox.pack_start(CommentLabel);
+    MiscBox.pack_start(CommentEntry);
 
     // Window
     add(Box);

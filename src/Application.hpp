@@ -37,27 +37,40 @@ class Application : public Gtk::Window
         Glib::RefPtr<Gtk::UIManager> RefUIManager;
         
         Gtk::Box Box;
+        Gtk::Box SourceBox;
+        Gtk::Box ConditionBox;
+        Gtk::Box MiscBox;
 
         Gtk::ComboBoxText SourceTypeOrReferenceIdCombo;
         Gtk::ComboBoxText ConditionTypeOrReferenceCombo;
 
         Gtk::Frame SourceFrame;
         Gtk::Frame ConditionFrame;
+        Gtk::Frame MiscFrame;
 
+        Gtk::Label SourceTypeOrReferenceIdLabel;
         Gtk::Label SourceGroupLabel;
         Gtk::Label SourceEntryLabel;
         Gtk::Label SourceIdLabel;
+        Gtk::Label ElseGroupLabel;
         Gtk::Label ConditionTargetLabel;
         Gtk::Label ConditionValue1Label;
         Gtk::Label ConditionValue2Label;
         Gtk::Label ConditionValue3Label;
+        Gtk::Label ErrorTextIdLabel;
+        Gtk::Label ScriptNameLabel;
+        Gtk::Label CommentLabel;
 
         Gtk::Entry SourceGroupEntry;
         Gtk::Entry SourceEntryEntry; // Lol'd
         Gtk::Entry SourceIdEntry;
+        Gtk::Entry ElseGroupEntry;
         Gtk::Entry ConditionValue1Entry;
         Gtk::Entry ConditionValue2Entry;
         Gtk::Entry ConditionValue3Entry;
+        Gtk::Entry ErrorTextIdEntry;
+        Gtk::Entry ScriptNameEntry;
+        Gtk::Entry CommentEntry;
 
         Gtk::RadioButton ConditionTargetButton1;
         Gtk::RadioButton ConditionTargetButton2;
@@ -74,6 +87,11 @@ class Application : public Gtk::Window
         void ConditionTargetButton1Changed();
         void ConditionTargetButton2Changed();
         void SourceIdChanged();
+        void SourceGroupChanged();
+        void ElseGroupChanged();
+        void ErrorTextIdChanged();
+        void ScriptNameChanged();
+        void CommentChanged();
 
         // Helper
         void SetConditionValueNull(uint8 Count);
