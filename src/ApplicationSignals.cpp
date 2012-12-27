@@ -151,7 +151,9 @@ void Application::ConditionTypeOrReferenceComboChanged()
         case CONDITION_ITEM:
             ConditionValue1Label.set_text("Item entry");
             ConditionValue2Label.set_text("Item count");
-            ConditionValue3Label.set_text("In bank (0/1)");
+            ConditionValue3Label.set_text("In bank");
+            ConditionValue3Entry.set_tooltip_text("0: False\n"
+                                                  "1: True");
             break;
         case CONDITION_ITEM_EQUIPPED:
             ConditionValue1Label.set_text("Item entry");
@@ -167,7 +169,9 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(1);
             break;
         case CONDITION_TEAM:
-            ConditionValue1Label.set_text("Team ID (A: 469/ H:67)");
+            ConditionValue1Label.set_text("Team ID");
+            ConditionValue1Entry.set_tooltip_text("469: Alliance\n"
+                                                  "67: Horde");
             SetConditionValueNull(2);
             break;
         case CONDITION_SKILL:
@@ -184,7 +188,11 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(2);
             break;
         case CONDITION_DRUNKENSTATE:
-            ConditionValue1Label.set_text("Drunken state (0-3)");
+            ConditionValue1Label.set_text("Drunken state");
+            ConditionValue1Entry.set_tooltip_text("0: Sober\n"
+                                                  "1: Tipsy\n"
+                                                  "2: Drunk\n"
+                                                  "3: Smashes");
             SetConditionValueNull(2);
             break;
         case CONDITION_WORLD_STATE:
@@ -252,7 +260,12 @@ void Application::ConditionTypeOrReferenceComboChanged()
             break;
         case CONDITION_LEVEL:
             ConditionValue1Label.set_text("Player level");
-            ConditionValue2Label.set_text("==,>,<,>=,<= (0-4)");
+            ConditionValue2Label.set_text("Condition");
+            ConditionValue2Entry.set_tooltip_text("0: ==\n"
+                                                  "1: >\n"
+                                                  "2: <\n"
+                                                  "3: >=\n"
+                                                  "4: <=");
             SetConditionValueNull(1);
             break;
         case CONDITION_QUEST_COMPLETE:
@@ -261,17 +274,26 @@ void Application::ConditionTypeOrReferenceComboChanged()
             break;
         case CONDITION_NEAR_CREATURE:
             ConditionValue1Label.set_text("Creature entry");
-            ConditionValue2Label.set_text("Distance in yards");
+            ConditionValue2Label.set_text("Distance");
+            ConditionValue2Entry.set_tooltip_text("In yards");
             SetConditionValueNull(1);
             break;
         case CONDITION_NEAR_GAMEOBJECT:
             ConditionValue1Label.set_text("Gameobject entry");
-            ConditionValue2Label.set_text("Distance in yards");
+            ConditionValue2Label.set_text("Distance");
+            ConditionValue2Entry.set_tooltip_text("In yards");
             SetConditionValueNull(1);
             break;
         case CONDITION_OBJECT_ENTRY:
-            ConditionValue1Label.set_text("Type ID (U:3 P:4 GO:5 CORPSE:7");
-            ConditionValue2Label.set_text("Creature/GO Entry (0: Any)");
+            ConditionValue1Label.set_text("Type ID");
+            ConditionValue1Entry.set_tooltip_text("Unit: 3\n"
+                                                  "Player: 4\n"
+                                                  "Gameobject: 5\n"
+                                                  "Corpse: 7\n");
+            ConditionValue2Label.set_text("Entry");
+            ConditionValue2Entry.set_tooltip_text("TypeID Unit: Creature entry\n"
+                                                  "TypeID GO: Gameobject entry\n"
+                                                  "0: Any object of given type\n");
             SetConditionValueNull(1);
             break;
         case CONDITION_TYPE_MASK:
@@ -284,9 +306,13 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(1);
             break;
         case CONDITION_REACTION_TO:
+            break;
         case CONDITION_DISTANCE_TO:
+            break;
         case CONDITION_ALIVE:
+            break;
         case CONDITION_HP_VAL:
+            break;
         case CONDITION_HP_PCT:
             break;
         default:
