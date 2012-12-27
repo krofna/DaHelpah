@@ -16,7 +16,7 @@ void Application::SourceTypeOrReferenceIdComboChanged()
     if (Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_NONE ||
         Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_MAX)
     {
-        // Reset
+        // TODO: Reset
     }
     else if (Condition._SourceTypeOrReferenceId < 13)
     {
@@ -50,14 +50,14 @@ void Application::SourceTypeOrReferenceIdComboChanged()
                 break;
             case CONDITION_SOURCE_TYPE_CREATURE_TEMPLATE_VEHICLE:
                 SourceGroupLabel.set_text("Always 0!");
-                SourceGroupEntry.set_text("0");
+                SourceGroupEntry.set_text("0"); // TODO: Always 0
                 SourceEntryLabel.set_text("Creature entry");
                 ConditionTargetButton1.set_label("0: Player");
                 ConditionTargetButton2.set_label("1: Vehicle Creature");
                 break;
             case CONDITION_SOURCE_TYPE_SPELL:
                 SourceGroupLabel.set_text("Always 0!");
-                SourceGroupEntry.set_text("0");
+                SourceGroupEntry.set_text("0"); // TODO: Always 0
                 SourceEntryLabel.set_text("Spell ID");
                 ConditionTargetButton1.set_label("0: Spell Caster");
                 ConditionTargetButton2.set_label("1: Explicit Target");
@@ -108,19 +108,30 @@ void Application::SetConditionTypeNull(uint8 Count)
     {
         ConditionValue3Label.set_text("Always 0!");
         ConditionValue3Entry.set_text("0");
+        ConditionValue3Entry.set_editable(false);
         --Count;
     }
+    else
+        ConditionValue3Entry.set_editable(true);
+    
     if (Count)
     {
         ConditionValue2Label.set_text("Always 0!");
         ConditionValue2Entry.set_text("0");
+        ConditionValue2Entry.set_editable(false);
         --Count;
     }
+    else
+        ConditionValue2Entry.set_editable(true);
+
     if (Count)
     {
         ConditionValue1Label.set_text("Always 0!");
         ConditionValue1Entry.set_text("0");
+        ConditionValue1Entry.set_editable(false);
     }
+    else
+        ConditionValue1Entry.set_editable(true);
 }
 
 void Application::ConditionTypeOrReferenceComboChanged()
@@ -130,7 +141,7 @@ void Application::ConditionTypeOrReferenceComboChanged()
     switch (Condition._ConditionTypeOrReference)
     {
         case 0:
-            // TODO: Reset?
+            SetConditionTypeNull(3);
             break;
         case CONDITION_AURA:
             ConditionValue1Label.set_text("Spell ID");
@@ -215,7 +226,7 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionTypeNull(2);
             break;
         case CONDITION_GENDER:
-            // TODO: Jump to 0?
+            SetConditionTypeNull(3);
             break;
         case CONDITION_UNUSED_21:
             // TODO
@@ -259,8 +270,34 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionTypeNull(1);
             break;
         case CONDITION_OBJECT_ENTRY:
+            ConditionValue1Label.set_text("Type ID (U:3 P:4 GO:5 CORPSE:7");
+            ConditionValue2Label.set_text("Creature/GO Entry (0: Any)");
+            SetConditionTypeNull(1);
             break;
         case CONDITION_TYPE_MASK:
+            ConditionValue1Label.set_text("TypeMask (TODO: tooltip)");
+            SetConditionTypeNull(2);
+            break;
+        case CONDITION_RELATION_TO:
+            ConditionValue1Label.set_text("?? TODO: Krofna doesn't get this one");
+            ConditionValue2Label.set_text("Relation type TOOLTIP PLZ");
+            SetConditionTypeNull(1);
+        
+            ConditionValue1: target to which relation is checked - one of ConditionTargets available in current SourceType.
+    ConditionValue2: RelationType - defines relation of current ConditionTarget to target specified in ConditionValue1.
+        0 - RELATION_SELF
+        1 - RELATION_IN_PARTY
+        2 - RELATION_IN_RAID_OR_PARTY
+        3 - RELATION_OWNED_BY (ConditionTarget is owned by ConditionValue1)
+        4 - RELATION_PASSENGER_OF (ConditionTarget is passenger of ConditionValue1)
+        5 - RELATION_CREATED_BY (ConditionTarget is summoned by ConditionValue1) 
+    ConditionValue3: always 0 
+            break;
+        case CONDITION_REACTION_TO:
+        case CONDITION_DISTANCE_TO:
+        case CONDITION_ALIVE:
+        case CONDITION_HP_VAL:
+        case CONDITION_HP_PCT:
             break;
         default:
             assert(false && "How the hell did you do this? Contact Krofna ASAP!");
