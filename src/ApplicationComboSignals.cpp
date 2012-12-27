@@ -22,7 +22,7 @@ void Application::SourceTypeOrReferenceIdComboChanged()
     {
         SourceGroupLabel.set_text("Loot entry");
         SourceEntryLabel.set_text("Item ID");
-        ConditionTargetButton1.set_active(); // TODO: Condition._ConditionTarget = 0;
+        ConditionTargetButton1.set_active();
         ConditionTargetButton1.set_label("0:");
         ConditionTargetButton2.set_label("1:");
     }
@@ -50,14 +50,16 @@ void Application::SourceTypeOrReferenceIdComboChanged()
                 break;
             case CONDITION_SOURCE_TYPE_CREATURE_TEMPLATE_VEHICLE:
                 SourceGroupLabel.set_text("Always 0!");
-                SourceGroupEntry.set_text("0"); // TODO: Always 0
+                SourceGroupEntry.set_text("0");
+                SourceGroupEntry.set_editable(false);
                 SourceEntryLabel.set_text("Creature entry");
                 ConditionTargetButton1.set_label("0: Player");
                 ConditionTargetButton2.set_label("1: Vehicle Creature");
                 break;
             case CONDITION_SOURCE_TYPE_SPELL:
                 SourceGroupLabel.set_text("Always 0!");
-                SourceGroupEntry.set_text("0"); // TODO: Always 0
+                SourceGroupEntry.set_text("0");
+                SourceGroupEntry.set_editable(false);
                 SourceEntryLabel.set_text("Spell ID");
                 ConditionTargetButton1.set_label("0: Spell Caster");
                 ConditionTargetButton2.set_label("1: Explicit Target");
@@ -70,17 +72,19 @@ void Application::SourceTypeOrReferenceIdComboChanged()
                 break;
             case CONDITION_SOURCE_TYPE_QUEST_ACCEPT:
                 SourceEntryLabel.set_text("Quest ID");
-                ConditionTargetButton1.set_active(); // TODO: Condition._ConditionTarget = 0;
+                ConditionTargetButton1.set_active();
                 ConditionTargetButton1.set_label("0:");
                 ConditionTargetButton2.set_label("1:");
-                // SourceGroup: ? <--- 0?
+                SourceGroupEntry.set_text("0");
+                SourceGroupEntry.set_editable(false);
                 break;
             case CONDITION_SOURCE_TYPE_QUEST_SHOW_MARK:
                 SourceEntryLabel.set_text("Quest ID");
-                ConditionTargetButton1.set_active(); // TODO: Condition._ConditionTarget = 0;
+                ConditionTargetButton1.set_active();
                 ConditionTargetButton1.set_label("0:");
                 ConditionTargetButton2.set_label("1:");
-                // SourceGroup: ? <--- 0?
+                SourceGroupEntry.set_text("0");
+                SourceGroupEntry.set_editable(false);
                 break;
             case CONDITION_SOURCE_TYPE_VEHICLE_SPELL:
                 SourceGroupLabel.set_text("Creature entry");
@@ -237,7 +241,7 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(3);
             break;
         case CONDITION_UNUSED_21:
-            // TODO
+            SetConditionValueNull(3);
             break;
         case CONDITION_MAPID:
             ConditionValue1Label.set_text("Map entry");
@@ -248,7 +252,7 @@ void Application::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(2);
             break;
         case CONDITION_UNUSED_24:
-            // TODO
+            SetConditionValueNull(3);
             break;
         case CONDITION_SPELL:
             ConditionValue1Label.set_text("Spell ID");

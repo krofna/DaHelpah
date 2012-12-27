@@ -24,7 +24,7 @@ class Application : public Gtk::Window
         // DaHelpah stuff
         void SaveToDB();
         void SaveToFile();
-        void _Save(const char* FileName);
+        void Save(const char* FileName);
         void Reset();
         void Quit();
 
@@ -69,6 +69,8 @@ class Application : public Gtk::Window
         void ConditionValue2Changed();
         void ConditionValue3Changed();
         void NegativeConditionChanged();
+        void ConditionTargetButton1Changed();
+        void ConditionTargetButton2Changed();
 
         // Helper
         void SetConditionValueNull(uint8 Count);

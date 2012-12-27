@@ -26,3 +26,13 @@ void Application::NegativeConditionChanged()
 {
     Condition._NegativeCondition = NegativeConditionButton.get_active();
 }
+
+void Application::ConditionTargetButton1Changed()
+{
+    Condition._ConditionTarget = 0;
+}
+
+void Application::ConditionTargetButton2Changed()
+{
+    Condition._ConditionTarget = 1;
+}

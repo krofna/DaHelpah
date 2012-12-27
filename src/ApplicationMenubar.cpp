@@ -12,7 +12,7 @@
 
 void Application::SaveToDB()
 {
-    _Save(0);
+    Save(0);
 }
 
 void Application::SaveToFile()
@@ -24,10 +24,10 @@ void Application::SaveToFile()
     Dialog.add_button("Save", Gtk::RESPONSE_OK);
 
     if (Dialog.run() == Gtk::RESPONSE_OK)
-        _Save(Dialog.get_filename().c_str());
+        Save(Dialog.get_filename().c_str());
 }
 
-void Application::_Save(const char* FileName)
+void Application::Save(const char* FileName)
 {
     char Buffer[MAX_QUERY_LEN];
 

@@ -49,6 +49,9 @@ ConditionTypeOrReferenceCombo(true)
     Box.pack_start(SourceGroupEntry);
 
     // ConditionTarget
+    ConditionTargetButton1.signal_clicked().connect(sigc::mem_fun(*this, &Application::ConditionTargetButton1Changed));
+    ConditionTargetButton2.signal_clicked().connect(sigc::mem_fun(*this, &Application::ConditionTargetButton2Changed));
+    
     Gtk::RadioButton::Group Group = ConditionTargetButton1.get_group();
     ConditionTargetButton2.set_group(Group);
 
@@ -72,6 +75,7 @@ ConditionTypeOrReferenceCombo(true)
     NegativeConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::NegativeConditionChanged));
     Box.pack_start(NegativeConditionButton);
 
+    // Window
     add(Box);
     set_border_width(10);
     set_title("DaHelpah");
