@@ -95,7 +95,12 @@ void Application::SourceTypeOrReferenceIdComboChanged()
             case CONDITION_SOURCE_TYPE_SMART_EVENT:
                 SourceGroupLabel.set_text("SmartScript ID");
                 SourceEntryLabel.set_text("SmartScript EntryOrGuid");
-                // TODO: SourceId: SourceType (smart_scripts.source_type)
+                SourceIdLabel.set_text("Source ID");
+                SourceIdEntry.set_tooltip_text("SAI Source Type:\n"
+                                               "0: Creature\n"
+                                               "1: Gameobject\n"
+                                               "2: Areatrigger\n"
+                                               "9: Timed Actionlist");
                 ConditionTargetButton1.set_label("0: Invoker");
                 ConditionTargetButton2.set_label("1: Object");
                 break;

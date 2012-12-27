@@ -14,6 +14,7 @@ SavedToDB               (false),
 Box                     (Gtk::ORIENTATION_VERTICAL),
 SourceGroupLabel        ("Source Group"),
 SourceEntryLabel        ("Source Entry"),
+SourceIdLabel           ("Source ID"),
 ConditionTargetLabel    ("Condition Target"),
 ConditionValue1Label    ("Condition Value 1"),
 ConditionValue2Label    ("Condition Value 2"),
@@ -27,7 +28,7 @@ SourceTypeOrReferenceIdCombo(true),
 ConditionTypeOrReferenceCombo(true)
 {
     WorldDatabase.Connect();
-    Reset();
+    ResetConditionData();
 
     // SourceTypeOrReferenceId
     for (uint8 i = 0; SourceTypeOrReferenceIdString[i]; ++i)
@@ -74,6 +75,10 @@ ConditionTypeOrReferenceCombo(true)
     // Negative condition
     NegativeConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::NegativeConditionChanged));
     Box.pack_start(NegativeConditionButton);
+    
+    // Source Id
+    SourceIdEntry.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceIdChanged));
+    Box.pack_start(SourceIdEntry);
 
     // Window
     add(Box);
@@ -88,7 +93,7 @@ ConditionTypeOrReferenceCombo(true)
 
     // File->
     RefActionGroup->add(Gtk::Action::create("FileNew", Gtk::Stock::NEW),
-            sigc::mem_fun(*this, &Application::Reset));
+          sigc::mem_fun(*this, &Application::ResetConditionData));
     RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save Condition"));
     RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
             sigc::mem_fun(*this, &Application::Quit));

@@ -63,7 +63,7 @@ void Application::Save(const char* FileName)
     }
 }
 
-void Application::Reset()
+void Application::ResetConditionData()
 {
     std::memset(&Condition, 0, sizeof(ConditionsData) - 2 * sizeof(std::string));
 }

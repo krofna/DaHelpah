@@ -36,3 +36,8 @@ void Application::ConditionTargetButton2Changed()
 {
     Condition._ConditionTarget = 1;
 }
+
+void Application::SourceIdChanged()
+{
+    Condition._SourceId = ToInt<uint32>(SourceIdEntry.get_text());
+}

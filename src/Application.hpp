@@ -25,7 +25,7 @@ class Application : public Gtk::Window
         void SaveToDB();
         void SaveToFile();
         void Save(const char* FileName);
-        void Reset();
+        void ResetConditionData();
         void Quit();
 
         bool SavedToDB;
@@ -46,6 +46,7 @@ class Application : public Gtk::Window
 
         Gtk::Label SourceGroupLabel;
         Gtk::Label SourceEntryLabel;
+        Gtk::Label SourceIdLabel;
         Gtk::Label ConditionTargetLabel;
         Gtk::Label ConditionValue1Label;
         Gtk::Label ConditionValue2Label;
@@ -53,6 +54,7 @@ class Application : public Gtk::Window
 
         Gtk::Entry SourceGroupEntry;
         Gtk::Entry SourceEntryEntry; // Lol'd
+        Gtk::Entry SourceIdEntry;
         Gtk::Entry ConditionValue1Entry;
         Gtk::Entry ConditionValue2Entry;
         Gtk::Entry ConditionValue3Entry;
@@ -71,6 +73,7 @@ class Application : public Gtk::Window
         void NegativeConditionChanged();
         void ConditionTargetButton1Changed();
         void ConditionTargetButton2Changed();
+        void SourceIdChanged();
 
         // Helper
         void SetConditionValueNull(uint8 Count);
