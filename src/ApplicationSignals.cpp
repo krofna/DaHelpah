@@ -113,7 +113,7 @@ void Application::SetConditionValueNull(uint8 Count)
     }
     else
         ConditionValue3Entry.set_editable(true);
-    
+
     if (Count)
     {
         ConditionValue2Label.set_text("Always 0!");
@@ -137,7 +137,7 @@ void Application::SetConditionValueNull(uint8 Count)
 void Application::ConditionTypeOrReferenceComboChanged()
 {
     Condition._ConditionTypeOrReference = ConditionTypeOrReferenceCombo.get_active_row_number();
-    
+
     switch (Condition._ConditionTypeOrReference)
     {
         case 0:
@@ -204,7 +204,7 @@ void Application::ConditionTypeOrReferenceComboChanged()
             ConditionValue1Label.set_text("Event entry");
             SetConditionValueNull(2);
             break;
-        case CONDITION_INSTANCE_DATA:            
+        case CONDITION_INSTANCE_DATA:
             ConditionValue1Label.set_text("Entry");
             ConditionValue2Label.set_text("Data");
             SetConditionValueNull(1);

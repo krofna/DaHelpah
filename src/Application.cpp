@@ -31,7 +31,7 @@ ConditionTypeOrReferenceCombo(true)
 {
     WorldDatabase.Connect();
     Reset();
-    
+
     // SourceTypeOrReferenceId
     for (uint8 i = 0; SourceTypeOrReferenceIdString[i]; ++i)
         SourceTypeOrReferenceIdCombo.append(SourceTypeOrReferenceIdString[i]);
@@ -39,7 +39,7 @@ ConditionTypeOrReferenceCombo(true)
     SourceTypeOrReferenceIdCombo.set_active(0);
     SourceTypeOrReferenceIdCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::SourceTypeOrReferenceIdComboChanged));
     Box.pack_start(SourceTypeOrReferenceIdCombo);
-    
+
     // ConditionTypeOrReference
     for (uint8 i = 0; ConditionTypeOrReferenceString[i]; ++i)
         ConditionTypeOrReferenceCombo.append(ConditionTypeOrReferenceString[i]);
@@ -47,18 +47,18 @@ ConditionTypeOrReferenceCombo(true)
     ConditionTypeOrReferenceCombo.set_active(0);
     ConditionTypeOrReferenceCombo.signal_changed().connect(sigc::mem_fun(*this, &Application::ConditionTypeOrReferenceComboChanged));
     Box.pack_start(ConditionTypeOrReferenceCombo);
-    
+
     Box.pack_start(SourceGroupLabel);
     Box.pack_start(SourceGroupEntry);
 
     // ConditionTarget
     Gtk::RadioButton::Group Group = ConditionTargetButton1.get_group();
     ConditionTargetButton2.set_group(Group);
-    
+
     Box.pack_start(ConditionTargetLabel);
     Box.pack_start(ConditionTargetButton1);
     Box.pack_start(ConditionTargetButton2);
-    
+
     // Condition Value
     Box.pack_start(ConditionValue1Label);
     Box.pack_start(ConditionValue1Entry);
@@ -66,14 +66,14 @@ ConditionTypeOrReferenceCombo(true)
     Box.pack_start(ConditionValue2Entry);
     Box.pack_start(ConditionValue3Label);
     Box.pack_start(ConditionValue3Entry);
-    
+
     add(Box);
     set_border_width(10);
     set_title("DaHelpah");
     set_default_size(300, 100);
 
     RefActionGroup = Gtk::ActionGroup::create();
-    
+
     // File
     RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));
 
@@ -83,19 +83,19 @@ ConditionTypeOrReferenceCombo(true)
     RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save Condition"));
     RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
             sigc::mem_fun(*this, &Application::Quit));
-    
+
     // File->Save->
     RefActionGroup->add(Gtk::Action::create("FileSaveDB", "To _DB", "Save to Database"),
           sigc::mem_fun(*this, &Application::SaveToDB));
     RefActionGroup->add(Gtk::Action::create("FileSaveFile", "To _File", "Save to File"),
           sigc::mem_fun(*this, &Application::SaveToFile));
-    
+
     RefUIManager = Gtk::UIManager::create();
     RefUIManager->insert_action_group(RefActionGroup);
     add_accel_group(RefUIManager->get_accel_group());
-    
+
     // Layout menubar
-    Glib::ustring ui_info = 
+    Glib::ustring ui_info =
         "<ui>"
         "  <menubar name='MenuBar'>"
         "    <menu action='FileMenu'>"

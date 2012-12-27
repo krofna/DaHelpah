@@ -40,7 +40,7 @@ enum ConditionTypeOrReference
     CONDITION_NONE                    = 0,
     CONDITION_AURA                    = 1,
     CONDITION_ITEM                    = 2,
-    CONDITION_ITEM_EQUIPPED           = 3,   
+    CONDITION_ITEM_EQUIPPED           = 3,
     CONDITION_ZONEID                  = 4,
     CONDITION_REPUTATION_RANK         = 5,
     CONDITION_TEAM                    = 6,

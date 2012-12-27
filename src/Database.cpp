@@ -30,9 +30,9 @@ void Database::Connect()
         throw std::runtime_error("Cannot open DaHelpah.conf");
 
     std::string Data[4];
-    
+
     CfgFile >> Data[0] >> Data[1] >> Data[2] >> Data[3];
-    
+
     Driver = get_driver_instance();
     Connection.reset(Driver->connect(Data[0], Data[1], Data[2]));
     Connection->setSchema(Data[3]);

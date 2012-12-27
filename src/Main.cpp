@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
     Application Window;
     int retval = 1;
-    
+
     try
     {
         retval = app->run(Window);
@@ -29,6 +29,6 @@ int main(int argc, char* argv[])
     {
         std::cout << "Runtime error lolz: " << e.what() << std::endl;
     }
-    
+
     return retval;
 }
