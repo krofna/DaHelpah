@@ -64,7 +64,7 @@ class Application : public Gtk::Window
         void ConditionTypeOrReferenceComboChanged();
         
         // Helper
-        void SetConditionTypeNull(uint8 Count);
+        void SetConditionValueNull(uint8 Count);
 };
 
 #endif

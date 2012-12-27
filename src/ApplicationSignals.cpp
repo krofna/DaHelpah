@@ -102,7 +102,7 @@ void Application::SourceTypeOrReferenceIdComboChanged()
     }
 }
 
-void Application::SetConditionTypeNull(uint8 Count)
+void Application::SetConditionValueNull(uint8 Count)
 {
     if (Count)
     {
@@ -141,12 +141,12 @@ void Application::ConditionTypeOrReferenceComboChanged()
     switch (Condition._ConditionTypeOrReference)
     {
         case 0:
-            SetConditionTypeNull(3);
+            SetConditionValueNull(3);
             break;
         case CONDITION_AURA:
             ConditionValue1Label.set_text("Spell ID");
             ConditionValue2Label.set_text("Effect index (0-2)");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_ITEM:
             ConditionValue1Label.set_text("Item entry");
@@ -155,143 +155,133 @@ void Application::ConditionTypeOrReferenceComboChanged()
             break;
         case CONDITION_ITEM_EQUIPPED:
             ConditionValue1Label.set_text("Item entry");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_ZONEID:
             ConditionValue1Label.set_text("Zone ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_REPUTATION_RANK:
             ConditionValue1Label.set_text("Faction template ID");
             ConditionValue2Label.set_text("Rank");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_TEAM:
             ConditionValue1Label.set_text("Team ID (A: 469/ H:67)");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_SKILL:
             ConditionValue1Label.set_text("Skill required");
             ConditionValue2Label.set_text("Skill value");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_QUESTREWARDED:
             ConditionValue1Label.set_text("Quest ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_QUESTTAKEN:
             ConditionValue1Label.set_text("Quest ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_DRUNKENSTATE:
             ConditionValue1Label.set_text("Drunken state (0-3)");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_WORLD_STATE:
             ConditionValue1Label.set_text("World state index");
             ConditionValue2Label.set_text("World state value");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_ACTIVE_EVENT:
             ConditionValue1Label.set_text("Event entry");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_INSTANCE_DATA:            
             ConditionValue1Label.set_text("Entry");
             ConditionValue2Label.set_text("Data");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_QUEST_NONE:
             ConditionValue1Label.set_text("Quest ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_CLASS:
             ConditionValue1Label.set_text("Class ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_RACE:
             ConditionValue1Label.set_text("Race");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_ACHIEVEMENT:
             ConditionValue1Label.set_text("Achievement ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_TITLE:
             ConditionValue1Label.set_text("Title ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_SPAWNMASK:
             ConditionValue1Label.set_text("SpawnMask");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_GENDER:
-            SetConditionTypeNull(3);
+            SetConditionValueNull(3);
             break;
         case CONDITION_UNUSED_21:
             // TODO
             break;
         case CONDITION_MAPID:
             ConditionValue1Label.set_text("Map entry");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_AREAID:
             ConditionValue1Label.set_text("Area ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_UNUSED_24:
             // TODO
             break;
         case CONDITION_SPELL:
             ConditionValue1Label.set_text("Spell ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_PHASEMASK:
             ConditionValue1Label.set_text("PhaseMask value");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_LEVEL:
             ConditionValue1Label.set_text("Player level");
             ConditionValue2Label.set_text("==,>,<,>=,<= (0-4)");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_QUEST_COMPLETE:
             ConditionValue1Label.set_text("Quest ID");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_NEAR_CREATURE:
             ConditionValue1Label.set_text("Creature entry");
             ConditionValue2Label.set_text("Distance in yards");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_NEAR_GAMEOBJECT:
             ConditionValue1Label.set_text("Gameobject entry");
             ConditionValue2Label.set_text("Distance in yards");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_OBJECT_ENTRY:
             ConditionValue1Label.set_text("Type ID (U:3 P:4 GO:5 CORPSE:7");
             ConditionValue2Label.set_text("Creature/GO Entry (0: Any)");
-            SetConditionTypeNull(1);
+            SetConditionValueNull(1);
             break;
         case CONDITION_TYPE_MASK:
             ConditionValue1Label.set_text("TypeMask (TODO: tooltip)");
-            SetConditionTypeNull(2);
+            SetConditionValueNull(2);
             break;
         case CONDITION_RELATION_TO:
             ConditionValue1Label.set_text("?? TODO: Krofna doesn't get this one");
             ConditionValue2Label.set_text("Relation type TOOLTIP PLZ");
-            SetConditionTypeNull(1);
-        
-            ConditionValue1: target to which relation is checked - one of ConditionTargets available in current SourceType.
-    ConditionValue2: RelationType - defines relation of current ConditionTarget to target specified in ConditionValue1.
-        0 - RELATION_SELF
-        1 - RELATION_IN_PARTY
-        2 - RELATION_IN_RAID_OR_PARTY
-        3 - RELATION_OWNED_BY (ConditionTarget is owned by ConditionValue1)
-        4 - RELATION_PASSENGER_OF (ConditionTarget is passenger of ConditionValue1)
-        5 - RELATION_CREATED_BY (ConditionTarget is summoned by ConditionValue1) 
-    ConditionValue3: always 0 
+            SetConditionValueNull(1);
             break;
         case CONDITION_REACTION_TO:
         case CONDITION_DISTANCE_TO:
