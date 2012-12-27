@@ -163,15 +163,15 @@ void Application::_Save(const char* FileName)
     else
     {
         snprintf(Buffer, MAX_QUERY_LEN, "UPDATE conditions SET SourceTypeOrReferenceId=%i, SourceGroup=%u, "
-                         "SourceEntry=%i, SourceId=%u, ElseGroup=%u, ConditionTypeOrReference=%i, "
-                         "ConditionTarget=%u, ConditionValue1=%u, ConditionValue2=%u, ConditionValue3=%u, "
-                         "NegativeCondition=%u, ErrorTextId=%u, ScriptName='%s', Comment='%s'",
-                         Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
-                         Condition._SourceEntry, Condition._SourceId, Condition._ElseGroup, Condition._ConditionTypeOrReference,
-                         Condition._ConditionTarget, Condition._ConditionValue1, Condition._ConditionValue2, Condition._ConditionValue3,
-                         Condition._NegativeCondition, Condition._ErrorTextId, Condition._ScriptName.c_str(), Condition._Comment.c_str());
+                 "SourceEntry=%i, SourceId=%u, ElseGroup=%u, ConditionTypeOrReference=%i, "
+                 "ConditionTarget=%u, ConditionValue1=%u, ConditionValue2=%u, ConditionValue3=%u, "
+                 "NegativeCondition=%u, ErrorTextId=%u, ScriptName='%s', Comment='%s'",
+                 Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
+                 Condition._SourceEntry, Condition._SourceId, Condition._ElseGroup, Condition._ConditionTypeOrReference,
+                 Condition._ConditionTarget, Condition._ConditionValue1, Condition._ConditionValue2, Condition._ConditionValue3,
+                 Condition._NegativeCondition, Condition._ErrorTextId, Condition._ScriptName.c_str(), Condition._Comment.c_str());
     }
-    
+
     if (FileName)
     {
         std::ofstream SqlDump(FileName);
