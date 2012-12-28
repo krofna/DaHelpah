@@ -4,8 +4,6 @@
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 
-#include <cstring>
-#include <cstdio>
 #include <fstream>
 
 #include "Application.hpp"
@@ -30,26 +28,12 @@ void Application::SaveToFile()
 void Application::Save(const char* FileName)
 {
     char Buffer[MAX_QUERY_LEN];
+    NotebookPage* pPage = (NotebookPage*)Notebook.get_nth_page(Notebook.get_current_page());
 
     if (FileName || !SavedToDB)
-    {
-        snprintf(Buffer, MAX_QUERY_LEN, "INSERT INTO conditions VALUES (%i, %u, %i, %u, %u, %i, %u, %u, %u, %u, %u, %u, '%s', '%s')",
-                 Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
-                 Condition._SourceEntry, Condition._SourceId, Condition._ElseGroup, Condition._ConditionTypeOrReference,
-                 Condition._ConditionTarget, Condition._ConditionValue1, Condition._ConditionValue2, Condition._ConditionValue3,
-                 Condition._NegativeCondition, Condition._ErrorTextId, Condition._ScriptName.c_str(), Condition._Comment.c_str());
-    }
+        pPage->GetConditionData(Buffer, true);
     else
-    {
-        snprintf(Buffer, MAX_QUERY_LEN, "UPDATE conditions SET SourceTypeOrReferenceId=%i, SourceGroup=%u, "
-                 "SourceEntry=%i, SourceId=%u, ElseGroup=%u, ConditionTypeOrReference=%i, "
-                 "ConditionTarget=%u, ConditionValue1=%u, ConditionValue2=%u, ConditionValue3=%u, "
-                 "NegativeCondition=%u, ErrorTextId=%u, ScriptName='%s', Comment='%s'",
-                 Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
-                 Condition._SourceEntry, Condition._SourceId, Condition._ElseGroup, Condition._ConditionTypeOrReference,
-                 Condition._ConditionTarget, Condition._ConditionValue1, Condition._ConditionValue2, Condition._ConditionValue3,
-                 Condition._NegativeCondition, Condition._ErrorTextId, Condition._ScriptName.c_str(), Condition._Comment.c_str());
-    }
+        pPage->GetConditionData(Buffer, false);
 
     if (FileName)
     {
@@ -61,11 +45,6 @@ void Application::Save(const char* FileName)
         WorldDatabase.Execute(Buffer);
         SavedToDB = true;
     }
-}
-
-void Application::ResetConditionData()
-{
-    std::memset(&Condition, 0, sizeof(ConditionsData) - 2 * sizeof(std::string));
 }
 
 void Application::Quit()

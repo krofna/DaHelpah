@@ -6,10 +6,10 @@
 
 #include <cassert>
 
-#include "Application.hpp"
+#include "NotebookPage.hpp"
 #include "ConditionsEnum.hpp"
 
-void Application::SourceTypeOrReferenceIdComboChanged()
+void NotebookPage::SourceTypeOrReferenceIdComboChanged()
 {
     Condition._SourceTypeOrReferenceId = SourceTypeOrReferenceIdCombo.get_active_row_number();
     
@@ -113,7 +113,7 @@ void Application::SourceTypeOrReferenceIdComboChanged()
     }
 }
 
-void Application::SetConditionValueNull(uint8 Count)
+void NotebookPage::SetConditionValueNull(uint8 Count)
 {
     if (Count)
     {
@@ -145,7 +145,7 @@ void Application::SetConditionValueNull(uint8 Count)
         ConditionValue1Entry.set_editable(true);
 }
 
-void Application::ConditionTypeOrReferenceComboChanged()
+void NotebookPage::ConditionTypeOrReferenceComboChanged()
 {
     Condition._ConditionTypeOrReference = ConditionTypeOrReferenceCombo.get_active_row_number();
 
