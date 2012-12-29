@@ -18,6 +18,17 @@ DeleteConditionButton   ("Delete Condition")
     RefUIManager = Gtk::UIManager::create();
     RefUIManager->insert_action_group(RefActionGroup);
     add_accel_group(RefUIManager->get_accel_group());
+    
+    // File
+    RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));
+
+    // File->
+    RefActionGroup->add(Gtk::Action::create("FileNew", "_Reset", "Reset all conditions"),
+          sigc::mem_fun(*this, &Application::Reset));
+    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save all conditions"),
+          sigc::mem_fun(*this, &Application::Save));
+    RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
+            sigc::mem_fun(*this, &Application::Quit));
 
     // Layout menubar
     Glib::ustring ui_info =
@@ -62,17 +73,6 @@ DeleteConditionButton   ("Delete Condition")
     DeleteConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::OnDeleteConditionButtonClicked));
     ButtonBox.pack_start(NewConditionButton);
     ButtonBox.pack_start(DeleteConditionButton);
-
-    // File
-    RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));
-
-    // File->
-    RefActionGroup->add(Gtk::Action::create("FileNew", "_Reset", "Reset all conditions"),
-          sigc::mem_fun(*this, &Application::Reset));
-    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save all conditions"),
-          sigc::mem_fun(*this, &Application::Save));
-    RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
-            sigc::mem_fun(*this, &Application::Quit));
 
     show_all_children();
 }
