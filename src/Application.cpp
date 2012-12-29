@@ -39,7 +39,7 @@ DeleteConditionButton   ("Delete Condition")
     RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));
 
     // File->
-    RefActionGroup->add(Gtk::Action::create("FileNew", Gtk::Stock::NEW),
+    RefActionGroup->add(Gtk::Action::create("FileNew", "_Reset", "Reset all conditions"),
           sigc::mem_fun(*this, &Application::Reset));
     RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save Condition"));
     RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
@@ -115,5 +115,6 @@ void Application::OnNewConditionButtonClicked()
 
 void Application::OnDeleteConditionButtonClicked()
 {
-    Notebook.remove_page(Notebook.get_current_page());
+    if (Notebook.get_n_pages() > 1)
+        Notebook.remove_page(Notebook.get_current_page());
 }
