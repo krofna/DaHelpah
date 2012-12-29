@@ -148,7 +148,7 @@ void NotebookPage::GetConditionData(char* Buffer, bool Flag)
 {
     if (Flag)
     {
-        snprintf(Buffer, MAX_QUERY_LEN, "INSERT INTO conditions VALUES (%i, %u, %i, %u, %u, %i, %u, %u, %u, %u, %u, %u, '%s', '%s')",
+        snprintf(Buffer, 2048, "(%i, %u, %i, %u, %u, %i, %u, %u, %u, %u, %u, %u, '%s', '%s')",
                  Condition._SourceTypeOrReferenceId, Condition._SourceGroup,
                  Condition._SourceEntry, Condition._SourceId, Condition._ElseGroup, Condition._ConditionTypeOrReference,
                  Condition._ConditionTarget, Condition._ConditionValue1, Condition._ConditionValue2, Condition._ConditionValue3,
@@ -156,7 +156,7 @@ void NotebookPage::GetConditionData(char* Buffer, bool Flag)
     }
     else
     {
-        snprintf(Buffer, MAX_QUERY_LEN, "UPDATE conditions SET SourceTypeOrReferenceId=%i, SourceGroup=%u, "
+        snprintf(Buffer, 2048, "UPDATE conditions SET SourceTypeOrReferenceId=%i, SourceGroup=%u, "
                  "SourceEntry=%i, SourceId=%u, ElseGroup=%u, ConditionTypeOrReference=%i, "
                  "ConditionTarget=%u, ConditionValue1=%u, ConditionValue2=%u, ConditionValue3=%u, "
                  "NegativeCondition=%u, ErrorTextId=%u, ScriptName='%s', Comment='%s'",

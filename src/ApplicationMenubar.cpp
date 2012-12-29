@@ -8,42 +8,28 @@
 
 #include "Application.hpp"
 
-void Application::SaveToDB()
-{
-    Save(0);
-}
-
-void Application::SaveToFile()
+void Application::Save()
 {
     Gtk::FileChooserDialog Dialog("Dump da sql, mon.", Gtk::FILE_CHOOSER_ACTION_SAVE);
     Dialog.set_transient_for(*this);
-
     Dialog.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
     Dialog.add_button("Save", Gtk::RESPONSE_OK);
 
     if (Dialog.run() == Gtk::RESPONSE_OK)
-        Save(Dialog.get_filename().c_str());
+        _Save(Dialog.get_filename().c_str());
 }
 
-void Application::Save(const char* FileName)
+void Application::_Save(const char* FileName)
 {
-    char Buffer[MAX_QUERY_LEN];
-    NotebookPage* pPage = (NotebookPage*)Notebook.get_nth_page(Notebook.get_current_page());
+    char Buffer[2048];
+    std::ofstream SqlDump(FileName);
+    
+    SqlDump << "INSERT INTO `conditions` VALUES\n";
 
-    if (FileName || !SavedToDB)
-        pPage->GetConditionData(Buffer, true);
-    else
-        pPage->GetConditionData(Buffer, false);
-
-    if (FileName)
+    for (int i = 0; i != Notebook.get_n_pages(); ++i)
     {
-        std::ofstream SqlDump(FileName);
-        SqlDump << Buffer << ';';
-    }
-    else
-    {
-        WorldDatabase.Execute(Buffer);
-        SavedToDB = true;
+        ((NotebookPage*)Notebook.get_nth_page(i))->GetConditionData(Buffer, true);
+        SqlDump << Buffer << (i == (Notebook.get_n_pages() - 1) ? ';' : ',') << '\n';
     }
 }
 

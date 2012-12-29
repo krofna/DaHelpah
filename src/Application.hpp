@@ -19,14 +19,10 @@ class Application : public Gtk::Window
 
     private:
         // DaHelpah stuff
-        void SaveToDB();
-        void SaveToFile();
-        void Save(const char* FileName);
+        void Save();
+        void _Save(const char* FileName);
         void Quit();
         void Reset();
-
-        bool SavedToDB;
-        Database WorldDatabase;
 
         // GUI stuff
         Glib::RefPtr<Gtk::ActionGroup> RefActionGroup;

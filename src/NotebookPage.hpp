@@ -9,7 +9,6 @@
 
 #include <gtkmm.h>
 
-#include "Database.hpp"
 #include "ConditionsData.hpp"
 
 class NotebookPage : public Gtk::HBox

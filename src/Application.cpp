@@ -9,14 +9,11 @@
 #include "Application.hpp"
 
 Application::Application() :
-SavedToDB               (false),
 MainBox                 (Gtk::ORIENTATION_VERTICAL),
 ButtonBox               (Gtk::ORIENTATION_HORIZONTAL),
 NewConditionButton      ("New Condition"),
 DeleteConditionButton   ("Delete Condition")
-{
-    WorldDatabase.Connect();
-    
+{    
     // Notebook
     NotebookPage* pNotebook = Gtk::manage(new NotebookPage(0, -1));
     Notebook.append_page(*pNotebook);
@@ -41,15 +38,10 @@ DeleteConditionButton   ("Delete Condition")
     // File->
     RefActionGroup->add(Gtk::Action::create("FileNew", "_Reset", "Reset all conditions"),
           sigc::mem_fun(*this, &Application::Reset));
-    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save Condition"));
+    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save all conditions"),
+          sigc::mem_fun(*this, &Application::Save));
     RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
             sigc::mem_fun(*this, &Application::Quit));
-
-    // File->Save->
-    RefActionGroup->add(Gtk::Action::create("FileSaveDB", "To _DB", "Save to Database"),
-          sigc::mem_fun(*this, &Application::SaveToDB));
-    RefActionGroup->add(Gtk::Action::create("FileSaveFile", "To _File", "Save to File"),
-          sigc::mem_fun(*this, &Application::SaveToFile));
 
     RefUIManager = Gtk::UIManager::create();
     RefUIManager->insert_action_group(RefActionGroup);
@@ -61,10 +53,7 @@ DeleteConditionButton   ("Delete Condition")
     "  <menubar name='MenuBar'>"
     "    <menu action='FileMenu'>"
     "      <menuitem action='FileNew'/>"
-    "      <menu action='FileSave'>"
-    "          <menuitem action='FileSaveDB'/>"
-    "          <menuitem action='FileSaveFile'/>"
-    "      </menu>"
+    "      <menuitem action='FileSave'/>"
     "      <separator/>"
     "      <menuitem action='FileQuit'/>"
     "    </menu>"
@@ -100,12 +89,15 @@ void Application::Reset()
 
 void Application::OnNewConditionButtonClicked()
 {
-    Gtk::MessageDialog Dialog(*this, "LOLZ?", false);
-    Dialog.set_secondary_text("AND OR OR LOL");
+    Gtk::MessageDialog Dialog(*this, "Logical condition", false, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_NONE);
+    Dialog.set_secondary_text("Pick one, mothafucka");
     Dialog.add_button("AND", 0);
     Dialog.add_button("OR", 1);
 
     int Result = Dialog.run();
+    
+    if (Result < 0 || Result > 1)
+        return;
 
     NotebookPage* pCurrent = (NotebookPage*)Notebook.get_nth_page(Notebook.get_current_page());
     NotebookPage* pNotebook = Gtk::manage(new NotebookPage(pCurrent, Result));
