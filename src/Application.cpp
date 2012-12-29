@@ -13,36 +13,8 @@ MainBox                 (Gtk::ORIENTATION_VERTICAL),
 ButtonBox               (Gtk::ORIENTATION_HORIZONTAL),
 NewConditionButton      ("New Condition"),
 DeleteConditionButton   ("Delete Condition")
-{    
-    // Notebook
-    NotebookPage* pNotebook = Gtk::manage(new NotebookPage(0, -1));
-    Notebook.append_page(*pNotebook);
-
-    // Window
-    MainBox.pack_start(Notebook);
-    MainBox.pack_start(ButtonBox);
-    add(MainBox);
-    set_border_width(5);
-    set_title("DaHelpah");
+{
     RefActionGroup = Gtk::ActionGroup::create();
-    
-    // New/Delete Condition
-    NewConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::OnNewConditionButtonClicked));
-    DeleteConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::OnDeleteConditionButtonClicked));
-    ButtonBox.pack_start(NewConditionButton);
-    ButtonBox.pack_start(DeleteConditionButton);
-
-    // File
-    RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));
-
-    // File->
-    RefActionGroup->add(Gtk::Action::create("FileNew", "_Reset", "Reset all conditions"),
-          sigc::mem_fun(*this, &Application::Reset));
-    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save all conditions"),
-          sigc::mem_fun(*this, &Application::Save));
-    RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
-            sigc::mem_fun(*this, &Application::Quit));
-
     RefUIManager = Gtk::UIManager::create();
     RefUIManager->insert_action_group(RefActionGroup);
     add_accel_group(RefUIManager->get_accel_group());
@@ -73,6 +45,34 @@ DeleteConditionButton   ("Delete Condition")
     Gtk::Widget* pMenubar = RefUIManager->get_widget("/MenuBar");
     if(pMenubar)
         MainBox.pack_start(*pMenubar, Gtk::PACK_SHRINK);
+
+    // Notebook
+    NotebookPage* pNotebook = Gtk::manage(new NotebookPage(0, -1));
+    Notebook.append_page(*pNotebook);
+
+    // Window
+    MainBox.pack_start(Notebook);
+    MainBox.pack_start(ButtonBox);
+    add(MainBox);
+    set_border_width(5);
+    set_title("DaHelpah");
+    
+    // New/Delete Condition
+    NewConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::OnNewConditionButtonClicked));
+    DeleteConditionButton.signal_clicked().connect(sigc::mem_fun(*this, &Application::OnDeleteConditionButtonClicked));
+    ButtonBox.pack_start(NewConditionButton);
+    ButtonBox.pack_start(DeleteConditionButton);
+
+    // File
+    RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));
+
+    // File->
+    RefActionGroup->add(Gtk::Action::create("FileNew", "_Reset", "Reset all conditions"),
+          sigc::mem_fun(*this, &Application::Reset));
+    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save all conditions"),
+          sigc::mem_fun(*this, &Application::Save));
+    RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
+            sigc::mem_fun(*this, &Application::Quit));
 
     show_all_children();
 }
