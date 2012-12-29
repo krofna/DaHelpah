@@ -9,8 +9,9 @@
 
 #include "NotebookPage.hpp"
 #include "ConditionsString.hpp"
+#include "Utility.hpp"
 
-NotebookPage::NotebookPage() :
+NotebookPage::NotebookPage(NotebookPage* pPrev, int Result) :
 SourceBox                 (Gtk::ORIENTATION_VERTICAL),
 ConditionBox              (Gtk::ORIENTATION_VERTICAL),
 MiscBox                   (Gtk::ORIENTATION_VERTICAL),
@@ -128,6 +129,19 @@ ConditionTypeOrReferenceCombo(true)
     
     MiscBox.pack_start(CommentLabel);
     MiscBox.pack_start(CommentEntry);
+    
+    // Logically connect conditions
+    if (pPrev)
+    {
+        SourceTypeOrReferenceIdCombo.set_active(pPrev->Condition._SourceTypeOrReferenceId);
+        SourceGroupEntry.set_text(ToString(pPrev->Condition._SourceGroup));
+        SourceEntryEntry.set_text(ToString(pPrev->Condition._SourceEntry));
+
+        if (Result == 0)
+            ElseGroupEntry.set_text(ToString(pPrev->Condition._ElseGroup));
+        else if (Result == 1)
+            ElseGroupEntry.set_text(ToString(pPrev->Condition._ElseGroup + 1));
+    }
 }
 
 void NotebookPage::GetConditionData(char* Buffer, bool Flag)
@@ -156,4 +170,12 @@ void NotebookPage::GetConditionData(char* Buffer, bool Flag)
 void NotebookPage::ResetConditionData()
 {
     std::memset(&Condition, 0, sizeof(ConditionsData) - 2 * sizeof(std::string));
+    SourceGroupEntry.set_text("0");
+    SourceEntryEntry.set_text("0");
+    SourceIdEntry.set_text("0");
+    ElseGroupEntry.set_text("0");
+    ConditionValue1Entry.set_text("0");
+    ConditionValue2Entry.set_text("0");
+    ConditionValue3Entry.set_text("0");
+    ErrorTextIdEntry.set_text("0");
 }

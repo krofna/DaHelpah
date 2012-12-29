@@ -20,4 +20,13 @@ template <class T> T ToInt(const std::string& What)
     return Result;
 }
 
+template <class T> std::string ToString(T What)
+{
+    std::stringstream Stream;
+    std::string Result;
+    Stream << What;
+    Stream >> Result;
+    return Result;
+}
+
 #endif

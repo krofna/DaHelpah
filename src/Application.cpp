@@ -18,7 +18,7 @@ DeleteConditionButton   ("Delete Condition")
     WorldDatabase.Connect();
     
     // Notebook
-    NotebookPage* pNotebook = Gtk::manage(new NotebookPage);
+    NotebookPage* pNotebook = Gtk::manage(new NotebookPage(0, -1));
     Notebook.append_page(*pNotebook);
 
     // Window
@@ -57,19 +57,19 @@ DeleteConditionButton   ("Delete Condition")
 
     // Layout menubar
     Glib::ustring ui_info =
-        "<ui>"
-        "  <menubar name='MenuBar'>"
-        "    <menu action='FileMenu'>"
-        "      <menuitem action='FileNew'/>"
-        "      <menu action='FileSave'>"
-        "          <menuitem action='FileSaveDB'/>"
-        "          <menuitem action='FileSaveFile'/>"
-        "      </menu>"
-        "      <separator/>"
-        "      <menuitem action='FileQuit'/>"
-        "    </menu>"
-        "  </menubar>"
-        "</ui>";
+    "<ui>"
+    "  <menubar name='MenuBar'>"
+    "    <menu action='FileMenu'>"
+    "      <menuitem action='FileNew'/>"
+    "      <menu action='FileSave'>"
+    "          <menuitem action='FileSaveDB'/>"
+    "          <menuitem action='FileSaveFile'/>"
+    "      </menu>"
+    "      <separator/>"
+    "      <menuitem action='FileQuit'/>"
+    "    </menu>"
+    "  </menubar>"
+    "</ui>";
 
     try
     {
@@ -100,7 +100,15 @@ void Application::Reset()
 
 void Application::OnNewConditionButtonClicked()
 {
-    NotebookPage* pNotebook = Gtk::manage(new NotebookPage);
+    Gtk::MessageDialog Dialog(*this, "LOLZ?", false);
+    Dialog.set_secondary_text("AND OR OR LOL");
+    Dialog.add_button("AND", 0);
+    Dialog.add_button("OR", 1);
+
+    int Result = Dialog.run();
+
+    NotebookPage* pCurrent = (NotebookPage*)Notebook.get_nth_page(Notebook.get_current_page());
+    NotebookPage* pNotebook = Gtk::manage(new NotebookPage(pCurrent, Result));
     Notebook.append_page(*pNotebook);
     Notebook.show_all_children();
 }
