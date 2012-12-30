@@ -23,9 +23,9 @@ DeleteConditionButton   ("Delete Condition")
     RefActionGroup->add(Gtk::Action::create("FileMenu", "File"));
 
     // File->
-    RefActionGroup->add(Gtk::Action::create("FileNew", "_Reset", "Reset all conditions"),
+    RefActionGroup->add(Gtk::Action::create("FileNew", Gtk::Stock::NEW),
           sigc::mem_fun(*this, &Application::Reset));
-    RefActionGroup->add(Gtk::Action::create("FileSave", "_Save", "Save all conditions"),
+    RefActionGroup->add(Gtk::Action::create("FileSave", Gtk::Stock::SAVE),
           sigc::mem_fun(*this, &Application::Save));
     RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
             sigc::mem_fun(*this, &Application::Quit));
