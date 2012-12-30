@@ -117,7 +117,7 @@ void NotebookPage::SetConditionValueNull(uint8 Count)
 {
     if (Count)
     {
-        ConditionValue3Label.set_text("Always 0!");
+        ConditionValue3Label.set_text("Condition Value 3");
         ConditionValue3Entry.set_text("0");
         ConditionValue3Entry.set_editable(false);
         --Count;
@@ -127,7 +127,7 @@ void NotebookPage::SetConditionValueNull(uint8 Count)
 
     if (Count)
     {
-        ConditionValue2Label.set_text("Always 0!");
+        ConditionValue2Label.set_text("Condition Value 2");
         ConditionValue2Entry.set_text("0");
         ConditionValue2Entry.set_editable(false);
         --Count;
@@ -137,7 +137,7 @@ void NotebookPage::SetConditionValueNull(uint8 Count)
 
     if (Count)
     {
-        ConditionValue1Label.set_text("Always 0!");
+        ConditionValue1Label.set_text("Condition Value 1");
         ConditionValue1Entry.set_text("0");
         ConditionValue1Entry.set_editable(false);
     }
@@ -317,13 +317,42 @@ void NotebookPage::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(2);
             break;
         case CONDITION_RELATION_TO:
-            ConditionValue1Label.set_text("?? TODO: Krofna doesn't get this one");
-            ConditionValue2Label.set_text("Relation type TOOLTIP PLZ");
+            ConditionValue1Label.set_text("Target");
+            ConditionValue1Entry.set_tooltip_text("One of Condition Targets (0-1)");
+            ConditionValue2Label.set_text("Relation Type");
+            ConditionValue2Entry.set_tooltip_text("0: RELATION_SELF\n"
+                                                  "1: RELATION_IN_PARTY\n"
+                                                  "2: RELATION_IN_RAID_OR_PARTY\n"
+                                                  "3: RELATION_OWNED_BY (ConditionTarget is owned by ConditionValue1)\n"
+                                                  "4: RELATION_PASSENGER_OF (ConditionTarget is passenger of ConditionValue1)\n"
+                                                  "5: RELATION_CREATED_BY (ConditionTarget is summoned by ConditionValue1)");
             SetConditionValueNull(1);
             break;
         case CONDITION_REACTION_TO:
+            ConditionValue1Label.set_text("Target");
+            ConditionValue1Entry.set_tooltip_text("One of Condition Targets (0-1)");
+            ConditionValue2Label.set_text("RankMask");
+            ConditionValue2Entry.set_tooltip_text("1: Hated\n"
+                                                  "2: Hostile\n"
+                                                  "4: Unfriendly\n"
+                                                  "8: Neutral\n"
+                                                  "16: Friendly\n"
+                                                  "32: Honored\n"
+                                                  "64: Revered\n"
+                                                  "28: Exalted");
+            SetConditionValueNull(1);
             break;
         case CONDITION_DISTANCE_TO:
+            ConditionValue1Label.set_text("Target");
+            ConditionValue1Entry.set_tooltip_text("One of Condition Targets (0-1)");
+            ConditionValue2Label.set_text("Distance");
+            ConditionValue2Entry.set_tooltip_text("Distance Between ConditionTarget and Target");
+            ConditionValue3Label.set_text("Condition");
+            ConditionValue3Entry.set_tooltip_text("0: ==\n"
+                                                  "1: >\n"
+                                                  "2: <\n"
+                                                  "3: >=\n"
+                                                  "4: <=");
             break;
         case CONDITION_ALIVE:
             SetConditionValueNull(3);
