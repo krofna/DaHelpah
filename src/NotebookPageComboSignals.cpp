@@ -14,6 +14,7 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
     Condition._SourceTypeOrReferenceId = SourceTypeOrReferenceIdCombo.get_active_row_number();
     
     SourceGroupEntry.set_editable(true);
+    SourceIdEntry.set_editable(false);
 
     if (Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_NONE ||
         Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_MAX)
@@ -97,6 +98,7 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
             case CONDITION_SOURCE_TYPE_SMART_EVENT:
                 SourceGroupLabel.set_text("SmartScript ID");
                 SourceEntryLabel.set_text("SmartScript EntryOrGuid");
+                SourceIdEntry.set_editable(true);
                 SourceIdLabel.set_text("Source ID");
                 SourceIdEntry.set_tooltip_text("SAI Source Type:\n"
                                                "0: Creature\n"
@@ -107,7 +109,12 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
                 ConditionTargetButton2.set_label("1: Object");
                 break;
             case CONDITION_SOURCE_TYPE_NPC_VENDOR:
-                // TODO: NYI
+                SourceGroupLabel.set_text("Creature entry");
+                SourceGroupEntry.set_tooltip_text("Vendor entry");
+                SourceEntryLabel.set_text("Item ID");
+                ConditionTargetButton1.set_label("0:");
+                ConditionTargetButton2.set_label("1:");
+                break;
             default:
                 assert(false && "How the hell did you do this? Contact Krofna ASAP!");
                 break;
