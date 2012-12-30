@@ -144,6 +144,10 @@ ConditionTypeOrReferenceCombo(true)
     }
 }
 
+NotebookPage::~NotebookPage()
+{
+}
+
 void NotebookPage::GetConditionData(char* Buffer, bool Flag)
 {
     if (Flag)

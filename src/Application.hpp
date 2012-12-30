@@ -15,8 +15,6 @@ class Application : public Gtk::Window
         Application();
         virtual ~Application();
 
-    protected:
-
     private:
         // DaHelpah stuff
         void Save();
