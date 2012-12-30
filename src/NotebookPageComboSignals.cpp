@@ -156,7 +156,8 @@ void NotebookPage::ConditionTypeOrReferenceComboChanged()
             break;
         case CONDITION_AURA:
             ConditionValue1Label.set_text("Spell ID");
-            ConditionValue2Label.set_text("Effect index (0-2)");
+            ConditionValue2Label.set_text("Effect index");
+            ConditionValue2Entry.set_tooltip_text("0-2, don't use wowhead");
             SetConditionValueNull(1);
             break;
         case CONDITION_ITEM:

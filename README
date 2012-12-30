@@ -9,6 +9,9 @@ Errwhere! (Except Hurd, lolz)
 Which platformz do u support?
 Debian and Ubuntu
 
+What if I'm using da windowz?
+README.win32
+
 Wut dafuq I need to compile dis sheet?
 g++
 libgtkmm-3.0-dev
