@@ -52,17 +52,13 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
                 ConditionTargetButton2.set_label("1: WorldObject");
                 break;
             case CONDITION_SOURCE_TYPE_CREATURE_TEMPLATE_VEHICLE:
-                SourceGroupLabel.set_text("Always 0!");
-                SourceGroupEntry.set_text("0");
-                SourceGroupEntry.set_editable(false);
+                SetSourceGroupNull();
                 SourceEntryLabel.set_text("Creature entry");
                 ConditionTargetButton1.set_label("0: Player");
                 ConditionTargetButton2.set_label("1: Vehicle Creature");
                 break;
             case CONDITION_SOURCE_TYPE_SPELL:
-                SourceGroupLabel.set_text("Always 0!");
-                SourceGroupEntry.set_text("0");
-                SourceGroupEntry.set_editable(false);
+                SetSourceGroupNull();
                 SourceEntryLabel.set_text("Spell ID");
                 ConditionTargetButton1.set_label("0: Spell Caster");
                 ConditionTargetButton2.set_label("1: Explicit Target");
@@ -78,16 +74,14 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
                 ConditionTargetButton1.set_active();
                 ConditionTargetButton1.set_label("0:");
                 ConditionTargetButton2.set_label("1:");
-                SourceGroupEntry.set_text("0");
-                SourceGroupEntry.set_editable(false);
+                SetSourceGroupNull();
                 break;
             case CONDITION_SOURCE_TYPE_QUEST_SHOW_MARK:
                 SourceEntryLabel.set_text("Quest ID");
                 ConditionTargetButton1.set_active();
                 ConditionTargetButton1.set_label("0:");
                 ConditionTargetButton2.set_label("1:");
-                SourceGroupEntry.set_text("0");
-                SourceGroupEntry.set_editable(false);
+                SetSourceGroupNull();
                 break;
             case CONDITION_SOURCE_TYPE_VEHICLE_SPELL:
                 SourceGroupLabel.set_text("Creature entry");
@@ -120,6 +114,13 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
                 break;
         }
     }
+}
+
+void NotebookPage::SetSourceGroupNull()
+{
+    SourceGroupLabel.set_text("Source Group");
+    SourceGroupEntry.set_text("0");
+    SourceGroupEntry.set_editable(false);
 }
 
 void NotebookPage::SetConditionValueNull(uint8 Count)

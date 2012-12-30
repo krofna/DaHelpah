@@ -81,8 +81,9 @@ class NotebookPage : public Gtk::HBox
         void ScriptNameChanged();
         void CommentChanged();
 
-        // Helper
+        // Helpers
         void SetConditionValueNull(uint8 Count);
+        void SetSourceGroupNull();
 };
 
 #endif
