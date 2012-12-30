@@ -74,6 +74,7 @@ class NotebookPage : public Gtk::HBox
         void ConditionTargetButton1Changed();
         void ConditionTargetButton2Changed();
         void SourceIdChanged();
+        void SourceEntryChanged();
         void SourceGroupChanged();
         void ElseGroupChanged();
         void ErrorTextIdChanged();

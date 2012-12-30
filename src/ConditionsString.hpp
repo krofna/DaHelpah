@@ -34,6 +34,7 @@ const char* SourceTypeOrReferenceIdString[]
     "QUEST_SHOW_MARK",
     "VEHICLE_SPELL",
     "SMART_EVENT",
+    "NPC_VENDOR",
     "MAX",
     NULL
 };

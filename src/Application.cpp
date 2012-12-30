@@ -28,7 +28,7 @@ DeleteConditionButton   ("Delete Condition")
     RefActionGroup->add(Gtk::Action::create("FileSave", Gtk::Stock::SAVE),
           sigc::mem_fun(*this, &Application::Save));
     RefActionGroup->add(Gtk::Action::create("FileQuit", Gtk::Stock::QUIT),
-            sigc::mem_fun(*this, &Application::Quit));
+          sigc::mem_fun(*this, &Application::Quit));
 
     // Layout menubar
     Glib::ustring ui_info =

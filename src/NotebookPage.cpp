@@ -72,6 +72,12 @@ ConditionTypeOrReferenceCombo(true)
 
     SourceBox.pack_start(SourceGroupLabel);
     SourceBox.pack_start(SourceGroupEntry);
+    
+    // Source Entry
+    SourceEntryEntry.signal_changed().connect(sigc::mem_fun(*this, &NotebookPage::SourceEntryChanged));
+    
+    SourceBox.pack_start(SourceEntryLabel);
+    SourceBox.pack_start(SourceEntryEntry);
 
     // Condition Target
     ConditionTargetButton1.signal_clicked().connect(sigc::mem_fun(*this, &NotebookPage::ConditionTargetButton1Changed));

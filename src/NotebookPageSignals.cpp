@@ -42,6 +42,11 @@ void NotebookPage::SourceIdChanged()
     Condition._SourceId = ToInt<uint32>(SourceIdEntry.get_text());
 }
 
+void NotebookPage::SourceEntryChanged()
+{
+    Condition._SourceEntry = ToInt<int32>(SourceEntryEntry.get_text());
+}
+
 void NotebookPage::ErrorTextIdChanged()
 {
     Condition._ErrorTextId = ToInt<uint32>(ErrorTextIdEntry.get_text());

@@ -106,6 +106,8 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
                 ConditionTargetButton1.set_label("0: Invoker");
                 ConditionTargetButton2.set_label("1: Object");
                 break;
+            case CONDITION_SOURCE_TYPE_NPC_VENDOR:
+                // TODO: NYI
             default:
                 assert(false && "How the hell did you do this? Contact Krofna ASAP!");
                 break;
@@ -246,7 +248,11 @@ void NotebookPage::ConditionTypeOrReferenceComboChanged()
             SetConditionValueNull(2);
             break;
         case CONDITION_GENDER:
-            SetConditionValueNull(3);
+            ConditionValue1Label.set_text("Gender");
+            ConditionValue1Entry.set_tooltip_text("0: Male\n"
+                                                  "1: Female\n"
+                                                  "2: None");
+            SetConditionValueNull(2);
             break;
         case CONDITION_UNUSED_21:
             SetConditionValueNull(3);
