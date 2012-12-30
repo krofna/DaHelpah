@@ -169,7 +169,9 @@ void NotebookPage::GetConditionData(char* Buffer, bool Flag)
 
 void NotebookPage::ResetConditionData()
 {
+    SetConditionValueNull(3);
     std::memset(&Condition, 0, sizeof(ConditionsData) - 2 * sizeof(std::string));
+    SourceTypeOrReferenceIdCombo.set_active(0);
     SourceGroupEntry.set_text("0");
     SourceEntryEntry.set_text("0");
     SourceIdEntry.set_text("0");

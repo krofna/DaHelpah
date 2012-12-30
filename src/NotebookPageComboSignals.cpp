@@ -18,7 +18,7 @@ void NotebookPage::SourceTypeOrReferenceIdComboChanged()
     if (Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_NONE ||
         Condition._SourceTypeOrReferenceId == CONDITION_SOURCE_TYPE_MAX)
     {
-        // TODO: Reset
+        SetConditionValueNull(3);
     }
     else if (Condition._SourceTypeOrReferenceId < 13)
     {

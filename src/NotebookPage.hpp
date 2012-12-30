@@ -17,9 +17,9 @@ class NotebookPage : public Gtk::HBox
         NotebookPage(NotebookPage* pPrev, int Result);
 
         void GetConditionData(char* Buffer, bool Flag);
+        void ResetConditionData();
 
     private:
-        void ResetConditionData();
         ConditionsData Condition;
     
         // GUI Stuff

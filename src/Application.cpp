@@ -83,8 +83,12 @@ Application::~Application()
 
 void Application::Reset()
 {
-    // TODO: nisi spremio??
-    // Reset sve
+    while (Notebook.get_n_pages() > 1)
+    {
+        Notebook.remove_page(Notebook.get_current_page());
+    }
+    NotebookPage* pPage = (NotebookPage*)Notebook.get_nth_page(Notebook.get_current_page());
+    pPage->ResetConditionData();
 }
 
 void Application::OnNewConditionButtonClicked()
