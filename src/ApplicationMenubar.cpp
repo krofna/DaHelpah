@@ -11,6 +11,7 @@
 void Application::Save()
 {
     Gtk::FileChooserDialog Dialog("Dump da sql, mon.", Gtk::FILE_CHOOSER_ACTION_SAVE);
+    Dialog.set_do_overwrite_confirmation(true);
     Dialog.set_transient_for(*this);
     Dialog.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
     Dialog.add_button("Save", Gtk::RESPONSE_OK);
