@@ -298,10 +298,10 @@ void NotebookPage::ConditionTypeOrReferenceComboChanged()
             break;
         case CONDITION_OBJECT_ENTRY:
             ConditionValue1Label.set_text("Type ID");
-            ConditionValue1Entry.set_tooltip_text("Unit: 3\n"
-                                                  "Player: 4\n"
-                                                  "Gameobject: 5\n"
-                                                  "Corpse: 7\n");
+            ConditionValue1Entry.set_tooltip_text("3: Unit\n"
+                                                  "4: Player\n"
+                                                  "5: Gameobject\n"
+                                                  "7: Corpse\n");
             ConditionValue2Label.set_text("Entry");
             ConditionValue2Entry.set_tooltip_text("TypeID Unit: Creature entry\n"
                                                   "TypeID GO: Gameobject entry\n"
@@ -310,10 +310,10 @@ void NotebookPage::ConditionTypeOrReferenceComboChanged()
             break;
         case CONDITION_TYPE_MASK:
             ConditionValue1Label.set_text("TypeMask");
-            ConditionValue1Entry.set_tooltip_text("0x0008: TYPEMASK_UNIT\n"
-                                                  "0x0010: TYPEMASK_PLAYER\n"
-                                                  "0x0020: TYPEMASK_GAMEOBJECT\n"
-                                                  "0x0080: TYPEMASK_CORPSE");
+            ConditionValue1Entry.set_tooltip_text("8: TYPEMASK_UNIT\n"
+                                                  "16: TYPEMASK_PLAYER\n"
+                                                  "32: TYPEMASK_GAMEOBJECT\n"
+                                                  "128: TYPEMASK_CORPSE");
             SetConditionValueNull(2);
             break;
         case CONDITION_RELATION_TO:

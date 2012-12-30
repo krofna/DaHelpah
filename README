@@ -15,10 +15,9 @@ README.win32
 Wut dafuq I need to compile dis sheet?
 g++
 libgtkmm-3.0-dev
-libmysqlcppconn-dev
 
 How dafuq I compile dis sheet?
-g++ *.cpp -o DaHelpah `pkg-config gtkmm-3.0 --cflags --libs` --std=c++0x -lmysqlcppconn
+g++ *.cpp -o DaHelpah `pkg-config gtkmm-3.0 --cflags --libs` --std=c++0x
 
 PRO TIPZ BY KROFNA
 There are tooltipz on entries, not labelz lolz
