@@ -54,7 +54,7 @@ const char* ConditionTypeOrReferenceString[]
     "DRUNKENSTATE",
     "WORLD_STATE",
     "ACTIVE_EVENT",
-    "INSTANCE_DATA",
+    "INSTANCE_INFO",
     "QUEST_NONE",
     "CLASS",
     "RACE",
