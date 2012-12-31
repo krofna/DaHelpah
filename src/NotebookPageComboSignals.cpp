@@ -226,10 +226,13 @@ void NotebookPage::ConditionTypeOrReferenceComboChanged()
             ConditionValue1Label.set_text("Event entry");
             SetConditionValueNull(2);
             break;
-        case CONDITION_INSTANCE_DATA:
+        case CONDITION_INSTANCE_INFO:
             ConditionValue1Label.set_text("Entry");
             ConditionValue2Label.set_text("Data");
-            SetConditionValueNull(1);
+            ConditionValue3Label.set_text("Instance Info");
+            ConditionValue3Entry.set_tooltip_text("0: Data\n"
+                                                  "1: Data64\n"
+                                                  "2: Boss State");
             break;
         case CONDITION_QUEST_NONE:
             ConditionValue1Label.set_text("Quest ID");

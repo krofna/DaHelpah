@@ -51,7 +51,7 @@ enum ConditionTypeOrReference
     CONDITION_DRUNKENSTATE            = 10,
     CONDITION_WORLD_STATE             = 11,
     CONDITION_ACTIVE_EVENT            = 12,
-    CONDITION_INSTANCE_DATA           = 13,
+    CONDITION_INSTANCE_INFO           = 13,
     CONDITION_QUEST_NONE              = 14,
     CONDITION_CLASS                   = 15,
     CONDITION_RACE                    = 16,
