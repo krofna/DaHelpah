@@ -22,6 +22,7 @@ class NotebookPage : public Gtk::HBox
 
     private:
         ConditionsData Condition;
+        static uint32 NextElseGroup;
     
         // GUI Stuff
         Gtk::ComboBoxText SourceTypeOrReferenceIdCombo;

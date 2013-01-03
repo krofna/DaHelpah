@@ -11,6 +11,8 @@
 #include "ConditionsString.hpp"
 #include "Utility.hpp"
 
+uint32 NotebookPage::NextElseGroup = 0;
+
 NotebookPage::NotebookPage(NotebookPage* pPrev, int Result) :
 SourceBox                 (Gtk::ORIENTATION_VERTICAL),
 ConditionBox              (Gtk::ORIENTATION_VERTICAL),
@@ -113,6 +115,7 @@ ConditionTypeOrReferenceCombo(true)
     SourceBox.pack_start(SourceIdEntry);
     
     // Else Group
+    ElseGroupEntry.set_editable(false);
     ElseGroupEntry.signal_changed().connect(sigc::mem_fun(*this, &NotebookPage::ElseGroupChanged));
     
     SourceBox.pack_start(ElseGroupLabel);
@@ -146,7 +149,10 @@ ConditionTypeOrReferenceCombo(true)
         if (Result == 0)
             ElseGroupEntry.set_text(ToString(pPrev->Condition._ElseGroup));
         else if (Result == 1)
-            ElseGroupEntry.set_text(ToString(pPrev->Condition._ElseGroup + 1));
+        {
+            ElseGroupEntry.set_text(ToString(NextElseGroup));
+            ++NextElseGroup;
+        }
     }
 }
 
