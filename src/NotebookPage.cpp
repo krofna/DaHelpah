@@ -11,7 +11,7 @@
 #include "ConditionsString.hpp"
 #include "Utility.hpp"
 
-uint32 NotebookPage::NextElseGroup = 0;
+uint32 NotebookPage::NextElseGroup = 1;
 
 NotebookPage::NotebookPage(NotebookPage* pPrev, int Result) :
 SourceBox                 (Gtk::ORIENTATION_VERTICAL),
@@ -147,7 +147,9 @@ ConditionTypeOrReferenceCombo(true)
         SourceEntryEntry.set_text(ToString(pPrev->Condition._SourceEntry));
 
         if (Result == 0)
+        {
             ElseGroupEntry.set_text(ToString(pPrev->Condition._ElseGroup));
+        }
         else if (Result == 1)
         {
             ElseGroupEntry.set_text(ToString(NextElseGroup));
