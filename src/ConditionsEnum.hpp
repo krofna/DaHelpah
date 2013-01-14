@@ -59,7 +59,7 @@ enum ConditionTypeOrReference
     CONDITION_TITLE                   = 18,
     CONDITION_SPAWNMASK               = 19,
     CONDITION_GENDER                  = 20,
-    CONDITION_UNUSED_21               = 21,
+    CONDITION_UNIT_STATE              = 21,
     CONDITION_MAPID                   = 22,
     CONDITION_AREAID                  = 23,
     CONDITION_UNUSED_24               = 24,

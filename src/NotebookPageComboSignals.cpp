@@ -265,8 +265,9 @@ void NotebookPage::ConditionTypeOrReferenceComboChanged()
                                                   "2: None");
             SetConditionValueNull(2);
             break;
-        case CONDITION_UNUSED_21:
-            SetConditionValueNull(3);
+        case CONDITION_UNIT_STATE:
+            ConditionValue1Label.set_text("Unit State");
+            SetConditionValueNull(2);
             break;
         case CONDITION_MAPID:
             ConditionValue1Label.set_text("Map entry");
