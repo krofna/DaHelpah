@@ -62,7 +62,7 @@ const char* ConditionTypeOrReferenceString[]
     "TITLE",
     "SPAWNMASK",
     "GENDER",
-    "UNUSED_21",
+    "UNIT_STATE",
     "MAPID",
     "AREAID",
     "UNUSED_24",
